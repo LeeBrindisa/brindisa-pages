@@ -35,10 +35,9 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
 .field-row:last-child { border-bottom: none; }
 .field-label { font-size: 14px; color: var(--gray-900); flex: 1; line-height: 1.4; }
 .field-label span { font-size: 11px; color: var(--red); margin-left: 2px; }
-.field-row select, .field-row input[type="text"] { border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; -webkit-appearance: none; width: auto; max-width: 160px; }
+.field-row select, .field-row input[type="text"] { border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; -webkit-appearance: none; width: auto; max-width: 200px; }
 .field-row select { cursor: pointer; }
 
-/* Section blocks with questions */
 .section-block { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; margin-bottom: 4px; }
 .section-block-header { padding: 10px 14px; background: var(--gray-50); border-bottom: 1px solid var(--gray-100); }
 .section-block-header h3 { font-size: 12px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -102,7 +101,114 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
     <div class="card">
       <div class="field-row">
         <div class="field-label">Your name <span>*</span></div>
-        <input type="text" id="user-name" placeholder="First and last name..." />
+        <select id="user-name" style="max-width:220px;">
+          <option value="">Select name...</option>
+          <option>Abbi Colmenares Elliott</option>
+          <option>Abigail Lawley</option>
+          <option>Aitziber Orue</option>
+          <option>Alberto Zurdo</option>
+          <option>Alessandra Rau</option>
+          <option>Alexia Toledo Aguilar</option>
+          <option>Amy Baker</option>
+          <option>Andrea del Rio Diez</option>
+          <option>Anthony Harrison</option>
+          <option>Anthony Renard</option>
+          <option>Arantxa Monsalve</option>
+          <option>Barbara Anda</option>
+          <option>Barbara Martin Gomez</option>
+          <option>Beatriz Rodriguez Acuna</option>
+          <option>Carlos Gutierrez</option>
+          <option>Christopher Shomolu</option>
+          <option>Claire Cousins</option>
+          <option>Clare Panjwani</option>
+          <option>Clara Morocutti</option>
+          <option>Cristina Pasantes</option>
+          <option>Dan Brysacz</option>
+          <option>David Marksman</option>
+          <option>David Roberts</option>
+          <option>Dimitra Kosta</option>
+          <option>Elio Vinoles</option>
+          <option>Eva Andres</option>
+          <option>Fernando Santero</option>
+          <option>Finlay Battle</option>
+          <option>Flora Elliott-Johnson</option>
+          <option>Francisco Pombal</option>
+          <option>Francisco Velazquez</option>
+          <option>Gail Prideaux</option>
+          <option>Georgia Leefe</option>
+          <option>German Arroyo</option>
+          <option>Guste Grimutaite</option>
+          <option>Harriet Stanford</option>
+          <option>Iago Castineiras Lopez</option>
+          <option>Ian Holloway</option>
+          <option>Ian Scrivener</option>
+          <option>Ildiko Csokasi</option>
+          <option>Jacqui Whitewick</option>
+          <option>James Edwards</option>
+          <option>James Robinson</option>
+          <option>Jamie Wilson</option>
+          <option>Jean-Paul Pelaez</option>
+          <option>Joe Ward</option>
+          <option>Jorge De Luna Gonzalez</option>
+          <option>Jose Bueno Marin</option>
+          <option>Josep Aimerich</option>
+          <option>Juan Giner</option>
+          <option>Katie Rogers</option>
+          <option>Kerri Perkins</option>
+          <option>Kos Ktisti</option>
+          <option>Lais Rodrigues de Andrade</option>
+          <option>Laz Altomare</option>
+          <option>Lee Moulds</option>
+          <option>Lee Reynolds</option>
+          <option>Lucas Orjuela</option>
+          <option>Lucia Capelo</option>
+          <option>Luigi Carbone</option>
+          <option>Luna Spisso</option>
+          <option>Maria Sanchez-Clemente</option>
+          <option>Martin Clover</option>
+          <option>Matthew Hunt</option>
+          <option>Michele Noakes</option>
+          <option>Monika Linton</option>
+          <option>Montserrat Martinez Murillo</option>
+          <option>Nicola Annetts Gill</option>
+          <option>Nicky Missen</option>
+          <option>Paolo Braina</option>
+          <option>Paula Arregui</option>
+          <option>Philip Dodwell</option>
+          <option>Piotr Kaminski</option>
+          <option>Raluca Budau</option>
+          <option>Richard Champion</option>
+          <option>Ricky Tombling</option>
+          <option>Robert Blackford</option>
+          <option>Roi Queiruga</option>
+          <option>Roman Ventoso</option>
+          <option>Rupert Linton</option>
+          <option>Russel Young</option>
+          <option>Sally Hoare</option>
+          <option>Sam Wright</option>
+          <option>Sara Martin Gonzalez</option>
+          <option>Steven Stanley</option>
+          <option>Tim Thorpe</option>
+          <option>Tom Dolby</option>
+          <option>Tom Szubert</option>
+          <option>Tony Rennard</option>
+          <option>Valentina Foltran</option>
+          <option>Valentina Oliveri</option>
+          <option>Vanessa Ludena</option>
+          <option value="__other__">My name isn't listed</option>
+        </select>
+      </div>
+      <div class="field-row" id="name-other-row" style="display:none;">
+        <div class="field-label">Enter your full name <span>*</span></div>
+        <input type="text" id="user-name-other" placeholder="First and last name..." style="max-width:200px; border:none; outline:none; background:none; font-family:var(--font); font-size:14px; color:var(--gray-600); text-align:right;" />
+      </div>
+      <div class="field-row">
+        <div class="field-label">Assessment type <span>*</span></div>
+        <select id="assessment-type">
+          <option value="">Select...</option>
+          <option value="Office">Office</option>
+          <option value="WFH">WFH (Working from Home)</option>
+        </select>
       </div>
       <div class="field-row">
         <div class="field-label">Site <span>*</span></div>
@@ -476,13 +582,14 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
 
 <script>
 (function() {
-  var AT_BASE = 'appPOhZzIvJ8JE1Ib';
+  var AT_BASE  = 'appPOhZzIvJ8JE1Ib';
   var AT_TABLE = 'tblQMfTxXBOw6NBa0';
-  var AT_KEY = 'patoF8HTEqJd9HALW.9d450cd7f97c9be4ac92e729d7be347e4531e517f209ae8d606b98e0ec1b256b';
+  var AT_KEY   = 'patoF8HTEqJd9HALW.9d450cd7f97c9be4ac92e729d7be347e4531e517f209ae8d606b98e0ec1b256b';
 
   var answers = {};
   var TOTAL_Q = 25;
 
+  // Auto-set workstation to WFH when Home / Remote selected
   document.getElementById('site').addEventListener('change', function() {
     var workstation = document.getElementById('workstation');
     if (this.value === 'Home / Remote') {
@@ -496,6 +603,32 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
     }
   });
 
+  // Auto-set site to Home / Remote when WFH assessment type selected
+  document.getElementById('assessment-type').addEventListener('change', function() {
+    var site = document.getElementById('site');
+    var workstation = document.getElementById('workstation');
+    if (this.value === 'WFH') {
+      site.value = 'Home / Remote';
+      workstation.value = 'WFH';
+      workstation.disabled = true;
+      workstation.style.opacity = '0.5';
+    } else if (this.value === 'Office') {
+      if (site.value === 'Home / Remote') {
+        site.value = '';
+        workstation.value = '';
+        workstation.disabled = false;
+        workstation.style.opacity = '1';
+      }
+    }
+  });
+
+  // Show/hide free-text name field
+  document.getElementById('user-name').addEventListener('change', function() {
+    var otherRow = document.getElementById('name-other-row');
+    otherRow.style.display = this.value === '__other__' ? 'flex' : 'none';
+    if (this.value !== '__other__') document.getElementById('user-name-other').value = '';
+  });
+
   document.getElementById('today-date').textContent =
     new Date().toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 
@@ -504,9 +637,7 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
     var fieldId = row.getAttribute('data-field');
     row.querySelectorAll('.ans-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        row.querySelectorAll('.ans-btn').forEach(function(b) {
-          b.classList.remove('selected');
-        });
+        row.querySelectorAll('.ans-btn').forEach(function(b) { b.classList.remove('selected'); });
         btn.classList.add('selected');
         var val = btn.classList.contains('yes') ? 'Yes' : btn.classList.contains('no') ? 'No' : 'Action Needed';
         answers[fieldId] = val;
@@ -523,10 +654,16 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
   }
 
   document.getElementById('submit-btn').addEventListener('click', function() {
-    var name = document.getElementById('user-name').value.trim();
-    var site = document.getElementById('site').value;
-    if (!name || name.split(/\s+/).filter(Boolean).length < 2) {
-      showToast('Please enter your first and last name.', 'error'); return;
+    var nameSelect   = document.getElementById('user-name').value;
+    var name         = nameSelect === '__other__' ? document.getElementById('user-name-other').value.trim() : nameSelect;
+    var assessType   = document.getElementById('assessment-type').value;
+    var site         = document.getElementById('site').value;
+
+    if (!name) {
+      showToast(nameSelect === '__other__' ? 'Please enter your full name.' : 'Please select your name.', 'error'); return;
+    }
+    if (!assessType) {
+      showToast('Please select Office or WFH.', 'error'); return;
     }
     if (!site) {
       showToast('Please select your site.', 'error'); return;
@@ -538,9 +675,10 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
     var btn = this;
     btn.disabled = true; btn.textContent = 'Submitting...';
 
-    var today = new Date().toISOString().split('T')[0];
-    var assessId = 'DSE-' + name.replace(/\s+/g,'').substring(0,4).toUpperCase() + '-' + Date.now().toString().slice(-6);
-    var hasAction = Object.values(answers).some(function(v) { return v === 'Action Needed'; });
+    var today      = new Date().toISOString().split('T')[0];
+    var nameSlug   = name.replace(/\s+/g,'').substring(0,6).toUpperCase();
+    var assessId   = 'DSE-' + nameSlug + '-' + Date.now().toString().slice(-6);
+    var hasAction  = Object.values(answers).some(function(v) { return v === 'Action Needed'; });
     var overallResult = hasAction ? 'Actions Required' : 'All Pass';
 
     var fields = {
@@ -548,20 +686,20 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
       fldeVILh6HgSj1l65: today,
       fldMH96vWfvXmdxdx: name,
       fldLsMqJ0BdVuYhu7: site,
-      fldqHdgWOfVYZdCkd: document.getElementById('workstation').value.trim() || null,
       fldtrknNNIxCAZMVl: name,
       fldeZV9HiEDqpGeiL: overallResult,
-      fldCfZejX2ihpmAVV: 'https://brindisa-dse-assessment.netlify.app'
+      flds2EbHtDzxDHcWP: assessType,
+      fldCfZejX2ihpmAVV: window.location.href
     };
+
+    var workstation = document.getElementById('workstation').value;
+    if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;
 
     // Add all question answers
     Object.assign(fields, answers);
 
     var notes = document.getElementById('notes').value.trim();
     if (notes) fields.fldWUWM9udk9y1tip = notes;
-
-    // Remove nulls
-    Object.keys(fields).forEach(function(k) { if (fields[k] === null) delete fields[k]; });
 
     fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
       method: 'POST',
@@ -592,6 +730,9 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
   window.resetForm = function() {
     answers = {};
     document.getElementById('user-name').value = '';
+    document.getElementById('user-name-other').value = '';
+    document.getElementById('name-other-row').style.display = 'none';
+    document.getElementById('assessment-type').value = '';
     document.getElementById('site').value = '';
     document.getElementById('workstation').value = '';
     document.getElementById('workstation').disabled = false;
