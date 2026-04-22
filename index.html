@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Brindisa DSE Self-Assessment</title>
+<title>DSE Self-Assessment</title>
 <style>
 :root {
   --red: #C0392B; --red-light: #FDECEA; --red-border: #E8A09A;
@@ -13,7 +13,7 @@
   --gray-50: #F8F8F7; --gray-100: #EFEFED; --gray-200: #DDDDD9;
   --gray-400: #9A9A96; --gray-600: #5A5A57; --gray-900: #1A1A18;
   --white: #FFFFFF; --radius: 10px; --radius-sm: 6px;
-  --font: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font: -apple-system, "Helvetica Neue", Arial, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); min-height: 100vh; max-width: 560px; margin: 0 auto; padding-bottom: 40px; }
@@ -35,12 +35,11 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
 .field-row:last-child { border-bottom: none; }
 .field-label { font-size: 14px; color: var(--gray-900); flex: 1; line-height: 1.4; }
 .field-label span { font-size: 11px; color: var(--red); margin-left: 2px; }
-.field-row select, .field-row input[type="text"] { border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; -webkit-appearance: none; width: auto; max-width: 200px; }
-.field-row select { cursor: pointer; }
+.field-row select { border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; -webkit-appearance: none; width: auto; max-width: 200px; cursor: pointer; }
+.field-row input[type="email"] { border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; width: auto; max-width: 220px; }
+.field-row input[type="email"]::placeholder { color: var(--gray-400); }
 
 .section-block { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; margin-bottom: 4px; }
-.section-block-header { padding: 10px 14px; background: var(--gray-50); border-bottom: 1px solid var(--gray-100); }
-.section-block-header h3 { font-size: 12px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.06em; }
 
 .question-row { display: flex; align-items: flex-start; padding: 12px 14px; border-bottom: 1px solid var(--gray-100); gap: 12px; }
 .question-row:last-child { border-bottom: none; }
@@ -87,8 +86,7 @@ body { font-family: var(--font); background: var(--gray-50); color: var(--gray-9
   </div>
 
   <div class="instructions">
-    <p>IMPORTANT: If you work both from home (WFH) and in the office, please complete this form separately for each workstation.
-Complete all sections honestly based on your current workstation setup. For each question select Yes, No, or Action Needed. Any Action Needed responses will be flagged to Facilities, who will review and follow up where required.</p>
+    <p>IMPORTANT: If you work both from home (WFH) and in the office, please complete this form separately for each workstation. Complete all sections honestly based on your current workstation setup. For each question select Yes, No, or Action Needed. Any Action Needed responses will be flagged to Facilities, who will review and follow up where required.</p>
   </div>
 
   <div class="progress-wrap">
@@ -101,107 +99,8 @@ Complete all sections honestly based on your current workstation setup. For each
     <div class="section-title">About you</div>
     <div class="card">
       <div class="field-row">
-        <div class="field-label">Your name <span>*</span></div>
-        <select id="user-name" style="max-width:220px;">
-          <option value="">Select name...</option>
-          <option>Abbi Colmenares Elliott</option>
-          <option>Abigail Lawley</option>
-          <option>Aitziber Orue</option>
-          <option>Alberto Zurdo</option>
-          <option>Alessandra Rau</option>
-          <option>Alexia Toledo Aguilar</option>
-          <option>Amy Baker</option>
-          <option>Andrea del Rio Diez</option>
-          
-          <option>Anthony Renard</option>
-          <option>Arantxa Monsalve</option>
-          <option>Barbara Anda</option>
-          <option>Barbara Martin Gomez</option>
-          <option>Beatriz Rodriguez Acuna</option>
-          <option>Carlos Gutierrez</option>
-          <option>Christopher Shomolu</option>
-          <option>Claire Cousins</option>
-          <option>Clare Panjwani</option>
-          <option>Clara Morocutti</option>
-          <option>Cristina Pasantes</option>
-          <option>Dan Brysacz</option>
-          
-          
-          <option>Dimitra Kosta</option>
-          <option>Elio Vinoles</option>
-          <option>Eva Andres</option>
-          <option>Fernando Santero</option>
-          <option>Finlay Battle</option>
-          <option>Flora Elliott-Johnson</option>
-          <option>Francisco Pombal</option>
-          <option>Francisco Velazquez</option>
-          <option>Gail Prideaux</option>
-          
-          <option>German Arroyo</option>
-          <option>Guste Grimutaite</option>
-          <option>Harriet Stanford</option>
-          
-          
-         
-          <option>Ildiko Csokasi</option>
-          <option>Jacqui Whitewick</option>
-          <option>James Edwards</option>
-          <option>James Robinson</option>
-          <option>Jamie Wilson</option>
-          <option>Jean-Paul Pelaez</option>
-          
-          <option>Jorge De Luna Gonzalez</option>
-          <option>Jose Bueno Marin</option>
-         
-          <option>Juan Giner</option>
-         
-          <option>Kerri Perkins</option>
-         
-         
-          <option>Laz Altomare</option>
-          <option>Lee Moulds</option>
-          
-          <option>Lucas Orjuela</option>
-          <option>Lucia Capelo</option>
-          <option>Luigi Carbone</option>
-          <option>Luna Spisso</option>
-          <option>Maria Sanchez-Clemente</option>
-          <option>Martin Clover</option>
-          <option>Matthew Hunt</option>
-          <option>Michele Noakes</option>
-          <option>Monika Linton</option>
-          <option>Montserrat Martinez Murillo</option>
-          <option>Nicola Annetts Gill</option>
-          <option>Nicky Missen</option>
-          
-          <option>Paula Arregui</option>
-          
-          <option>Piotr Kaminski</option>
-          <option>Raluca Budau</option>
-          
-          <option>Ricky Tombling</option>
-          <option>Robert Blackford</option>
-          <option>Roi Queiruga</option>
-          <option>Roman Ventoso</option>
-          <option>Rupert Linton</option>
-          
-          <option>Sally Hoare</option>
-          <option>Sam Wright</option>
-          <option>Sara Martin Gonzalez</option>
-          <option>Steven Stanley</option>
-          <option>Tim Thorpe</option>
-          <option>Tom Dolby</option>
-          <option>Tom Szubert</option>
-          <option>Tony Rennard</option>
-          <option>Valentina Foltran</option>
-          <option>Valentina Oliveri</option>
-          <option>Vanessa Ludena</option>
-          <option value="__other__">⚠ My name isn't listed</option>
-        </select>
-      </div>
-      <div class="field-row" id="name-other-row" style="display:none;">
-        <div class="field-label">Enter your full name <span>*</span></div>
-        <input type="text" id="user-name-other" placeholder="First and last name..." style="max-width:200px; border:none; outline:none; background:none; font-family:var(--font); font-size:14px; color:var(--gray-600); text-align:right;" />
+        <div class="field-label">Your Brindisa email <span>*</span></div>
+        <input type="email" id="user-email" placeholder="you@brindisa.com" autocomplete="email" />
       </div>
       <div class="field-row">
         <div class="field-label">Assessment type <span>*</span></div>
@@ -245,316 +144,71 @@ Complete all sections honestly based on your current workstation setup. For each
     <!-- Section 1: Keyboards -->
     <div class="section-title">1. Keyboard</div>
     <div class="section-block">
-      <div id="q-1.1" class="question-row" data-field="fldERucNqojG7IHJV">
-        <div class="question-text">Is the keyboard separate from the screen?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-1.2" class="question-row" data-field="fldLJi24KkOX3HyU7">
-        <div class="question-text">Does the keyboard tilt?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-1.3" class="question-row" data-field="fldie2P4Z6A5c678A">
-        <div class="question-text">Is it possible to find a comfortable keying position?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-1.4" class="question-row" data-field="fldwaePs3gR8zr6Jk">
-        <div class="question-text">Are you able to use the keyboard comfortably and without strain?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-1.5" class="question-row" data-field="fld6TRtSegjN3XdcC">
-        <div class="question-text">Are the keyboard characters clear and readable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldERucNqojG7IHJV"><div class="question-text">Is the keyboard separate from the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldLJi24KkOX3HyU7"><div class="question-text">Does the keyboard tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldie2P4Z6A5c678A"><div class="question-text">Is it possible to find a comfortable keying position?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldwaePs3gR8zr6Jk"><div class="question-text">Are you able to use the keyboard comfortably and without strain?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld6TRtSegjN3XdcC"><div class="question-text">Are the keyboard characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 2: Mouse -->
     <div class="section-title">2. Mouse / Trackball</div>
     <div class="section-block">
-      <div id="q-2.1" class="question-row" data-field="fldtwDk89VJHqnF7s">
-        <div class="question-text">Is the device suitable for the tasks it is used for?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-2.2" class="question-row" data-field="fldpTJMV1BJhxpsPr">
-        <div class="question-text">Is the device positioned close to the user?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-2.3" class="question-row" data-field="fldqWg0KqT1hSFiBk">
-        <div class="question-text">Is there support for the device user's wrist and forearm?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-2.4" class="question-row" data-field="fldei3oZKOdOTOf31">
-        <div class="question-text">Does the device work smoothly at a speed that suits the user?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-2.5" class="question-row" data-field="fldoDUY67g40vYit0">
-        <div class="question-text">Can the user easily adjust software settings for pointer speed?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldtwDk89VJHqnF7s"><div class="question-text">Is the device suitable for the tasks it is used for?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldpTJMV1BJhxpsPr"><div class="question-text">Is the device positioned close to the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqWg0KqT1hSFiBk"><div class="question-text">Is there support for the device user's wrist and forearm?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldei3oZKOdOTOf31"><div class="question-text">Does the device work smoothly at a speed that suits the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoDUY67g40vYit0"><div class="question-text">Can the user easily adjust software settings for pointer speed?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 3: Display Screen -->
     <div class="section-title">3. Display Screen</div>
     <div class="section-block">
-      <div id="q-3.1" class="question-row" data-field="flduf9cIpjMtdT3SX">
-        <div class="question-text">Are the characters clear and readable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.2" class="question-row" data-field="fldevWdE3QSSHNkwT">
-        <div class="question-text">Is the text size comfortable to read?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.3" class="question-row" data-field="fldVAXo0ckOHuk5D4">
-        <div class="question-text">Is the image stable, free of flicker and jitter?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.4" class="question-row" data-field="fldMPKxKKvlj4JflP">
-        <div class="question-text">Is the screen's specification suitable for its intended use?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.5" class="question-row" data-field="fldhAnGwDRAGpW73a">
-        <div class="question-text">Are brightness and contrast adjustable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.6" class="question-row" data-field="fldV7lbOGdgBI87aQ">
-        <div class="question-text">Does the screen swivel and tilt?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.7" class="question-row" data-field="fldt2AdcH8dF3yWeY">
-        <div class="question-text">Is the screen free from glare and reflections?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-3.8" class="question-row" data-field="fldqJUmeMcbmf0lr8">
-        <div class="question-text">Are adjustable window coverings provided and in adequate condition?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="flduf9cIpjMtdT3SX"><div class="question-text">Are the characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldevWdE3QSSHNkwT"><div class="question-text">Is the text size comfortable to read?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldVAXo0ckOHuk5D4"><div class="question-text">Is the image stable, free of flicker and jitter?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldMPKxKKvlj4JflP"><div class="question-text">Is the screen's specification suitable for its intended use?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldhAnGwDRAGpW73a"><div class="question-text">Are brightness and contrast adjustable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldV7lbOGdgBI87aQ"><div class="question-text">Does the screen swivel and tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldt2AdcH8dF3yWeY"><div class="question-text">Is the screen free from glare and reflections?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqJUmeMcbmf0lr8"><div class="question-text">Are adjustable window coverings provided and in adequate condition?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 4: Software -->
     <div class="section-title">4. Software</div>
     <div class="section-block">
-      <div id="q-4.1" class="question-row" data-field="fldXRXb7DaS6zvkKK">
-        <div class="question-text">Is the software suitable for the task?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldXRXb7DaS6zvkKK"><div class="question-text">Is the software suitable for the task?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 5: Furniture -->
     <div class="section-title">5. Furniture</div>
     <div class="section-block">
-      <div id="q-5.1" class="question-row" data-field="fldmIpaZb5m8zzvKi">
-        <div class="question-text">Is the work surface large enough for all necessary equipment?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.2" class="question-row" data-field="fld9ffxW6LGvJf3qZ">
-        <div class="question-text">Can the user comfortably reach all equipment and papers?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.3" class="question-row" data-field="fldbBytj0lX9iK5yT">
-        <div class="question-text">Are surfaces free from glare and reflection?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.4" class="question-row" data-field="fldxkoyK4o4NeHrFU">
-        <div class="question-text">Is the chair suitable and stable with working adjustments?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.5" class="question-row" data-field="flduoyTNPaULfXXZ7">
-        <div class="question-text">Is the chair adjusted correctly for the user?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.6" class="question-row" data-field="fldKQzHmVoFHB0NLC">
-        <div class="question-text">Is the small of the back supported by the chair's backrest?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.7" class="question-row" data-field="fldRkhA0On80nat8z">
-        <div class="question-text">Are forearms horizontal and eyes at roughly the same height as the top of the screen?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-5.8" class="question-row" data-field="fldoJNSiSslqBrEcB">
-        <div class="question-text">Are feet flat on the floor without too much pressure from the seat?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldmIpaZb5m8zzvKi"><div class="question-text">Is the work surface large enough for all necessary equipment?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9ffxW6LGvJf3qZ"><div class="question-text">Can the user comfortably reach all equipment and papers?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldbBytj0lX9iK5yT"><div class="question-text">Are surfaces free from glare and reflection?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldxkoyK4o4NeHrFU"><div class="question-text">Is the chair suitable and stable with working adjustments?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="flduoyTNPaULfXXZ7"><div class="question-text">Is the chair adjusted correctly for the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldKQzHmVoFHB0NLC"><div class="question-text">Is the small of the back supported by the chair's backrest?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldRkhA0On80nat8z"><div class="question-text">Are forearms horizontal and eyes at roughly the same height as the top of the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoJNSiSslqBrEcB"><div class="question-text">Are feet flat on the floor without too much pressure from the seat?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 6: Environment -->
     <div class="section-title">6. Environment</div>
     <div class="section-block">
-      <div id="q-6.1" class="question-row" data-field="fldSpzMreJH30t8Vf">
-        <div class="question-text">Is there enough room to change position and vary movement?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-6.2" class="question-row" data-field="fldjD6899AN39aupo">
-        <div class="question-text">Is the lighting suitable — not too bright or too dim?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-6.3" class="question-row" data-field="fld3h2G64FdeCqHts">
-        <div class="question-text">Does the air feel comfortable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-6.4" class="question-row" data-field="fldzuEp2mdF22YtWQ">
-        <div class="question-text">Are levels of heat comfortable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-6.5" class="question-row" data-field="fldHRCTV4mCC96zJE">
-        <div class="question-text">Are levels of noise comfortable?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldSpzMreJH30t8Vf"><div class="question-text">Is there enough room to change position and vary movement?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldjD6899AN39aupo"><div class="question-text">Is the lighting suitable — not too bright or too dim?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld3h2G64FdeCqHts"><div class="question-text">Does the air feel comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldzuEp2mdF22YtWQ"><div class="question-text">Are levels of heat comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldHRCTV4mCC96zJE"><div class="question-text">Are levels of noise comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- Section 7: Final questions -->
     <div class="section-title">7. Final Questions</div>
     <div class="section-block">
-      <div id="q-7.1" class="question-row" data-field="fldav11T3HaeQJ5Ny">
-        <div class="question-text">Have you experienced any discomfort or symptoms you attribute to DSE work?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-7.2" class="question-row" data-field="fldgeeKBfz66zjgLX">
-        <div class="question-text">Have you been advised of your entitlement to eye and eyesight testing?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
-      <div id="q-7.3" class="question-row" data-field="fld9JpD5X1spGnYR3">
-        <div class="question-text">Do you take regular breaks away from DSE?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes" type="button">Yes</button>
-          <button class="ans-btn no" type="button">No</button>
-          <button class="ans-btn action" type="button">Action</button>
-        </div>
-      </div>
+      <div class="question-row" data-field="fldav11T3HaeQJ5Ny"><div class="question-text">Have you experienced any discomfort or symptoms you attribute to DSE work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldgeeKBfz66zjgLX"><div class="question-text">Have you been advised of your entitlement to eye and eyesight testing?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9JpD5X1spGnYR3"><div class="question-text">Do you take regular breaks away from DSE?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <div class="section-title">Actions / Notes</div>
@@ -570,7 +224,7 @@ Complete all sections honestly based on your current workstation setup. For each
 </div>
 
 <div class="complete-screen" id="complete-screen">
-  <div class="complete-icon" id="complete-icon">✅</div>
+  <div class="complete-icon" id="complete-icon">&#x2705;</div>
   <h2 id="complete-title">Assessment submitted</h2>
   <p id="complete-msg">Your DSE self-assessment has been saved. A copy has been sent to the facilities team.</p>
   <div class="action-note" id="action-note" style="display:none;">
@@ -583,64 +237,57 @@ Complete all sections honestly based on your current workstation setup. For each
 
 <script>
 (function() {
-  var AT_BASE  = 'appPOhZzIvJ8JE1Ib';
-  var AT_TABLE = 'tblQMfTxXBOw6NBa0';
-  var AT_KEY   = 'patoF8HTEqJd9HALW.9d450cd7f97c9be4ac92e729d7be347e4531e517f209ae8d606b98e0ec1b256b';
+  var AT_BASE  = "appPOhZzIvJ8JE1Ib";
+  var AT_TABLE = "tblQMfTxXBOw6NBa0";
+  var AT_KEY   = "patoF8HTEqJd9HALW.9d450cd7f97c9be4ac92e729d7be347e4531e517f209ae8d606b98e0ec1b256b";
 
   var answers = {};
   var TOTAL_Q = 25;
 
   // Auto-set workstation to WFH when Home / Remote selected
-  document.getElementById('site').addEventListener('change', function() {
-    var workstation = document.getElementById('workstation');
-    if (this.value === 'Home / Remote') {
-      workstation.value = 'WFH';
+  document.getElementById("site").addEventListener("change", function() {
+    var workstation = document.getElementById("workstation");
+    if (this.value === "Home / Remote") {
+      workstation.value = "WFH";
       workstation.disabled = true;
-      workstation.style.opacity = '0.5';
+      workstation.style.opacity = "0.5";
     } else {
-      workstation.value = '';
+      workstation.value = "";
       workstation.disabled = false;
-      workstation.style.opacity = '1';
+      workstation.style.opacity = "1";
     }
   });
 
   // Auto-set site to Home / Remote when WFH assessment type selected
-  document.getElementById('assessment-type').addEventListener('change', function() {
-    var site = document.getElementById('site');
-    var workstation = document.getElementById('workstation');
-    if (this.value === 'WFH') {
-      site.value = 'Home / Remote';
-      workstation.value = 'WFH';
+  document.getElementById("assessment-type").addEventListener("change", function() {
+    var site = document.getElementById("site");
+    var workstation = document.getElementById("workstation");
+    if (this.value === "WFH") {
+      site.value = "Home / Remote";
+      workstation.value = "WFH";
       workstation.disabled = true;
-      workstation.style.opacity = '0.5';
-    } else if (this.value === 'Office') {
-      if (site.value === 'Home / Remote') {
-        site.value = '';
-        workstation.value = '';
+      workstation.style.opacity = "0.5";
+    } else if (this.value === "Office") {
+      if (site.value === "Home / Remote") {
+        site.value = "";
+        workstation.value = "";
         workstation.disabled = false;
-        workstation.style.opacity = '1';
+        workstation.style.opacity = "1";
       }
     }
   });
 
-  // Show/hide free-text name field
-  document.getElementById('user-name').addEventListener('change', function() {
-    var otherRow = document.getElementById('name-other-row');
-    otherRow.style.display = this.value === '__other__' ? 'flex' : 'none';
-    if (this.value !== '__other__') document.getElementById('user-name-other').value = '';
-  });
-
-  document.getElementById('today-date').textContent =
-    new Date().toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
 
   // Wire up all answer buttons
-  document.querySelectorAll('.question-row').forEach(function(row) {
-    var fieldId = row.getAttribute('data-field');
-    row.querySelectorAll('.ans-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        row.querySelectorAll('.ans-btn').forEach(function(b) { b.classList.remove('selected'); });
-        btn.classList.add('selected');
-        var val = btn.classList.contains('yes') ? 'Yes' : btn.classList.contains('no') ? 'No' : 'Action Needed';
+  document.querySelectorAll(".question-row").forEach(function(row) {
+    var fieldId = row.getAttribute("data-field");
+    row.querySelectorAll(".ans-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        row.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+        btn.classList.add("selected");
+        var val = btn.classList.contains("yes") ? "Yes" : btn.classList.contains("no") ? "No" : "Action Needed";
         answers[fieldId] = val;
         updateProgress();
       });
@@ -650,99 +297,103 @@ Complete all sections honestly based on your current workstation setup. For each
   function updateProgress() {
     var count = Object.keys(answers).length;
     var pct = Math.round((count / TOTAL_Q) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-label').textContent = count + ' of ' + TOTAL_Q + ' questions answered';
+    document.getElementById("progress-fill").style.width = pct + "%";
+    document.getElementById("progress-label").textContent = count + " of " + TOTAL_Q + " questions answered";
   }
 
-  document.getElementById('submit-btn').addEventListener('click', function() {
-    var nameSelect   = document.getElementById('user-name').value;
-    var name         = nameSelect === '__other__' ? document.getElementById('user-name-other').value.trim() : nameSelect;
-    var assessType   = document.getElementById('assessment-type').value;
-    var site         = document.getElementById('site').value;
+  function isValidBrindisaEmail(email) {
+    return /^[^@]+@brindisa\.com$/i.test(email.trim());
+  }
 
-    if (!name) {
-      showToast(nameSelect === '__other__' ? 'Please enter your full name.' : 'Please select your name.', 'error'); return;
+  document.getElementById("submit-btn").addEventListener("click", function() {
+    var email      = document.getElementById("user-email").value.trim().toLowerCase();
+    var assessType = document.getElementById("assessment-type").value;
+    var site       = document.getElementById("site").value;
+
+    if (!email) {
+      showToast("Please enter your Brindisa email address.", "error"); return;
+    }
+    if (!isValidBrindisaEmail(email)) {
+      showToast("Please use your @brindisa.com email address.", "error"); return;
     }
     if (!assessType) {
-      showToast('Please select Office or WFH.', 'error'); return;
+      showToast("Please select Office or WFH.", "error"); return;
     }
     if (!site) {
-      showToast('Please select your site.', 'error'); return;
+      showToast("Please select your site.", "error"); return;
     }
     if (Object.keys(answers).length < TOTAL_Q) {
-      showToast('Please answer all ' + TOTAL_Q + ' questions.', 'error'); return;
+      showToast("Please answer all " + TOTAL_Q + " questions.", "error"); return;
     }
 
     var btn = this;
-    btn.disabled = true; btn.textContent = 'Submitting...';
+    btn.disabled = true; btn.textContent = "Submitting...";
 
-    var today      = new Date().toISOString().split('T')[0];
-    var nameSlug   = name.replace(/\s+/g,'').substring(0,6).toUpperCase();
-    var assessId   = 'DSE-' + nameSlug + '-' + Date.now().toString().slice(-6);
-    var hasAction  = Object.values(answers).some(function(v) { return v === 'Action Needed'; });
-    var overallResult = hasAction ? 'Actions Required' : 'All Pass';
+    var today     = new Date().toISOString().split("T")[0];
+    var emailSlug = email.split("@")[0].substring(0,6).toUpperCase();
+    var assessId  = "DSE-" + emailSlug + "-" + Date.now().toString().slice(-6);
+    var hasAction = Object.values(answers).some(function(v) { return v === "Action Needed"; });
+    var overallResult = hasAction ? "Actions Required" : "All Pass";
 
     var fields = {
       fldYU58czQjhDkJeo: assessId,
       fldeVILh6HgSj1l65: today,
-      fldMH96vWfvXmdxdx: name,
+      fldMH96vWfvXmdxdx: email,
+      fld9GT327LQ6BNrDk: email,
       fldLsMqJ0BdVuYhu7: site,
-      fldtrknNNIxCAZMVl: name,
+      fldtrknNNIxCAZMVl: email,
       fldeZV9HiEDqpGeiL: overallResult,
       flds2EbHtDzxDHcWP: assessType,
       fldCfZejX2ihpmAVV: window.location.href
     };
 
-    var workstation = document.getElementById('workstation').value;
+    var workstation = document.getElementById("workstation").value;
     if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;
 
-    // Add all question answers
     Object.assign(fields, answers);
 
-    var notes = document.getElementById('notes').value.trim();
+    var notes = document.getElementById("notes").value.trim();
     if (notes) fields.fldWUWM9udk9y1tip = notes;
 
-    fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json','Authorization':'Bearer ' + AT_KEY},
+    fetch("https://api.airtable.com/v0/" + AT_BASE + "/" + AT_TABLE, {
+      method: "POST",
+      headers: {"Content-Type":"application/json","Authorization":"Bearer " + AT_KEY},
       body: JSON.stringify({records:[{fields:fields}]})
     }).then(function(res) {
-      if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || 'API error'); });
+      if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || "API error"); });
       return res.json();
     }).then(function() {
-      document.getElementById('form-screen').style.display = 'none';
-      var cs = document.getElementById('complete-screen');
-      cs.classList.add('show');
-      document.getElementById('complete-title').textContent = hasAction ? 'Assessment submitted — actions flagged' : 'Assessment submitted';
-      document.getElementById('complete-icon').textContent = hasAction ? '⚠️' : '✅';
-      if (hasAction) document.getElementById('action-note').style.display = 'block';
+      document.getElementById("form-screen").style.display = "none";
+      var cs = document.getElementById("complete-screen");
+      cs.classList.add("show");
+      document.getElementById("complete-title").textContent = hasAction ? "Assessment submitted — actions flagged" : "Assessment submitted";
+      document.getElementById("complete-icon").textContent = hasAction ? "\u26A0\uFE0F" : "\u2705";
+      if (hasAction) document.getElementById("action-note").style.display = "block";
     }).catch(function(e) {
-      showToast('Failed: ' + e.message, 'error');
-      btn.disabled = false; btn.textContent = 'Submit assessment';
+      showToast("Failed: " + e.message, "error");
+      btn.disabled = false; btn.textContent = "Submit assessment";
     });
   });
 
   function showToast(msg, type) {
-    var t = document.getElementById('toast');
-    t.textContent = msg; t.className = 'toast ' + type + ' show';
-    setTimeout(function() { t.classList.remove('show'); }, 3500);
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.className = "toast " + type + " show";
+    setTimeout(function() { t.classList.remove("show"); }, 3500);
   }
 
   window.resetForm = function() {
     answers = {};
-    document.getElementById('user-name').value = '';
-    document.getElementById('user-name-other').value = '';
-    document.getElementById('name-other-row').style.display = 'none';
-    document.getElementById('assessment-type').value = '';
-    document.getElementById('site').value = '';
-    document.getElementById('workstation').value = '';
-    document.getElementById('workstation').disabled = false;
-    document.getElementById('workstation').style.opacity = '1';
-    document.getElementById('notes').value = '';
-    document.querySelectorAll('.ans-btn').forEach(function(b) { b.classList.remove('selected'); });
-    document.getElementById('action-note').style.display = 'none';
-    document.getElementById('complete-screen').classList.remove('show');
-    document.getElementById('form-screen').style.display = 'block';
+    document.getElementById("user-email").value = "";
+    document.getElementById("assessment-type").value = "";
+    document.getElementById("site").value = "";
+    document.getElementById("workstation").value = "";
+    document.getElementById("workstation").disabled = false;
+    document.getElementById("workstation").style.opacity = "1";
+    document.getElementById("notes").value = "";
+    document.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+    document.getElementById("action-note").style.display = "none";
+    document.getElementById("complete-screen").classList.remove("show");
+    document.getElementById("form-screen").style.display = "block";
     updateProgress();
     window.scrollTo(0, 0);
   };
