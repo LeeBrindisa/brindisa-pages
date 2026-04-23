@@ -368,7 +368,7 @@ body{
   // === Airtable ===
   var AT_BASE  = "appPOhZzIvJ8JE1Ib";
   var AT_TABLE = "tblQMfTxXBOw6NBa0";
-  var AT_KEY   = "patn3pfQRYPvDnR4u.f467023a6db910a35c5b5bf6dbb4a21bc3c5ba37c474a9b8e803b61ac3f1ef4b"; // <-- paste your PAT token here
+  var AT_KEY   = "patn3pfQRYPvDnR4u.0e631239757c8e917d0c366415a03a363dd86dad8fce54584d8cf3024e9c4263"; // <-- paste your PAT token here
 
   var answers = {};
   var TOTAL_Q = 27;
@@ -493,12 +493,12 @@ body{
       flds2EbHtDzxDHcWP: assessType         // Assessment Type (single select: "Office" or "WFH")
     };
 
-    // Email stored in notes field as plain text since no dedicated email field exists in table
-    // If you want to add a dedicated email field in Airtable, add its field ID here
-    var notesValue = "Submitted by: " + email;
-    var userNotes  = document.getElementById("notes").value.trim();
-    if (userNotes) notesValue += "\n\n" + userNotes;
-    fields.fldWUWM9udk9y1tip = notesValue;  // Notes (long text)
+    // Dedicated email field
+    fields.fldc80B4W8pFkaj1k = email;  // Submitted By (Email)
+
+    // Notes
+    var userNotes = document.getElementById("notes").value.trim();
+    if (userNotes) fields.fldWUWM9udk9y1tip = userNotes;
 
     if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;  // Workstation (text)
 
