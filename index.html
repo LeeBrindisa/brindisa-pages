@@ -368,7 +368,7 @@ body{
   // === Airtable ===
   var AT_BASE  = "appPOhZzIvJ8JE1Ib";
   var AT_TABLE = "tblQMfTxXBOw6NBa0";
-  var AT_KEY   = "patn3pfQRYPvDnR4u.0e631239757c8e917d0c366415a03a363dd86dad8fce54584d8cf3024e9c4263"; // <-- paste your PAT token here
+  var AT_KEY   = "PASTE_YOUR_AIRTABLE_KEY_HERE"; // <-- paste your PAT token here
 
   var answers = {};
   var TOTAL_Q = 27;
@@ -455,7 +455,7 @@ body{
   }
 
   function isValidWorkEmail(email) {
-    return /^[^@]+@[^@]+\.[^@]+$/i.test(email.trim());
+    return /^[^@]+@brindisa\.com$/i.test(email.trim());
   }
 
   document.getElementById("submit-btn").addEventListener("click", function() {
@@ -465,7 +465,7 @@ body{
     var workstation = document.getElementById("workstation").value;
 
     if (!email)                        { showToast("Please enter your work email address.", "error"); return; }
-    if (!isValidWorkEmail(email))  { showToast("Please use your work email address.", "error"); return; }
+    if (!isValidWorkEmail(email))  { showToast("Please use your @brindisa.com email address.", "error"); return; }
     if (!assessType)                   { showToast("Please select an assessment type.", "error"); return; }
 
     applySiteRules();
