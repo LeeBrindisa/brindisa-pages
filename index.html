@@ -4,116 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Brindisa DSE Self-Assessment – Office & Home (Hybrid)</title>
+<title>DSE Self-Assessment – Office & Home (Hybrid)</title>
 
 <style>
 :root {
-  --red:#C0392B; --amber:#E67E22; --green:#27AE60;
+  --red:#C0392B; --red-light:#FDECEA;
+  --amber:#E67E22; --amber-light:#FEF3E2;
+  --green:#27AE60; --green-light:#E8F8F0;
   --gray-50:#F8F8F7; --gray-100:#EFEFED; --gray-200:#DDDDD9;
   --gray-400:#9A9A96; --gray-600:#5A5A57; --gray-900:#1A1A18;
   --white:#FFFFFF; --radius:10px; --radius-sm:6px;
   --font:-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{
   font-family:var(--font);
   background:var(--gray-50);
   color:var(--gray-900);
+  min-height:100vh;
   max-width:560px;
   margin:0 auto;
   padding-bottom:40px;
 }
 
 .page-header{
-  background:#fff;
-  padding:16px;
+  background:var(--white);
+  padding:16px 16px 12px;
   border-bottom:1px solid var(--gray-100);
   position:sticky;top:0;z-index:100;
 }
-.page-header h1{font-size:18px;font-weight:600}
-.page-header p{font-size:13px;color:var(--gray-400)}
+.page-header h1{font-size:18px;font-weight:600;letter-spacing:-0.3px;}
+.page-header p{font-size:13px;color:var(--gray-400);margin-top:2px;}
 
 .instructions{
   background:#EBF4FB;
   border-left:3px solid #2980B9;
-  margin:14px 16px;
-  padding:12px;
+  margin:14px 16px 0;
+  padding:10px 12px;
   border-radius:var(--radius-sm);
 }
-.instructions p{font-size:13px;line-height:1.5}
+.instructions p{font-size:13px;color:#1A3A50;line-height:1.5;}
+.instructions .small{margin-top:8px;font-size:12px;opacity:0.95;}
 
-.form-body{padding:16px}
+.progress-wrap{padding:0 16px;margin-top:14px;}
+.progress-bar{height:3px;background:var(--gray-200);border-radius:2px;}
+.progress-fill{height:100%;background:var(--red);border-radius:2px;transition:width .3s;width:0%;}
+.progress-label{font-size:12px;color:var(--gray-400);margin-top:5px;}
+
+.form-body{padding:16px;}
 .section-title{
   font-size:11px;font-weight:600;color:var(--gray-400);
   text-transform:uppercase;letter-spacing:.08em;
   margin:20px 0 10px;
 }
+.section-title:first-child{margin-top:0;}
 
-.card,.section-block{
-  background:#fff;border:1px solid var(--gray-200);
-  border-radius:var(--radius);overflow:hidden;margin-bottom:6px;
+.card, .section-block{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--gray-200);
+  overflow:hidden;
+  margin-bottom:4px;
 }
 
 .field-row{
   display:flex;align-items:center;
-  padding:12px 14px;border-bottom:1px solid var(--gray-100);
+  padding:12px 14px;
+  border-bottom:1px solid var(--gray-100);
+  gap:12px;
 }
-.field-row:last-child{border-bottom:none}
-.field-label{flex:1;font-size:14px}
-.field-label span{color:var(--red);font-size:11px}
-.field-row input, .field-row select{
+.field-row:last-child{border-bottom:none;}
+.field-label{font-size:14px;color:var(--gray-900);flex:1;line-height:1.4;}
+.field-label span{font-size:11px;color:var(--red);margin-left:2px;}
+.field-row select{
   border:none;outline:none;background:none;
-  font-size:14px;color:var(--gray-600);
-  text-align:right;max-width:220px;
+  font-family:var(--font);font-size:14px;color:var(--gray-600);
+  text-align:right;min-width:0;-webkit-appearance:none;
+  width:auto;max-width:200px;cursor:pointer;
 }
+.field-row input[type="email"]{
+  border:none;outline:none;background:none;
+  font-family:var(--font);font-size:14px;color:var(--gray-600);
+  text-align:right;min-width:0;width:auto;max-width:220px;
+}
+.field-row input[type="email"]::placeholder{color:var(--gray-400);}
 
 .question-row{
-  display:flex;gap:12px;
-  padding:12px 14px;border-bottom:1px solid var(--gray-100);
+  display:flex;align-items:flex-start;
+  padding:12px 14px;
+  border-bottom:1px solid var(--gray-100);
+  gap:12px;
 }
-.question-row:last-child{border-bottom:none}
-.question-text{flex:1;font-size:13px;line-height:1.5}
-
-.answer-btns{display:flex;gap:4px}
+.question-row:last-child{border-bottom:none;}
+.question-text{font-size:13px;color:var(--gray-900);flex:1;line-height:1.5;padding-top:2px;}
+.answer-btns{display:flex;gap:4px;flex-shrink:0;}
 .ans-btn{
   padding:5px 10px;border-radius:20px;
-  border:1px solid var(--gray-200);
-  background:#fff;font-size:12px;cursor:pointer;
+  border:1px solid var(--gray-200);background:var(--white);
+  font-family:var(--font);font-size:12px;font-weight:500;color:var(--gray-600);
+  cursor:pointer;white-space:nowrap;touch-action:manipulation;-webkit-appearance:none;
 }
-.ans-btn.yes.selected{background:#E8F8F0;border-color:var(--green);color:var(--green)}
-.ans-btn.no.selected{background:#FDECEA;border-color:var(--red);color:var(--red)}
-.ans-btn.action.selected{background:#FEF3E2;border-color:var(--amber);color:var(--amber)}
+.ans-btn.yes.selected{background:var(--green-light);border-color:var(--green);color:var(--green);}
+.ans-btn.no.selected{background:var(--red-light);border-color:var(--red);color:var(--red);}
+.ans-btn.action.selected{background:var(--amber-light);border-color:var(--amber);color:var(--amber);}
 
 .notes-wrap{
-  background:#fff;border:1px solid var(--gray-200);
-  border-radius:var(--radius);padding:12px;
-}
-textarea{
-  width:100%;border:none;outline:none;
-  font-family:var(--font);font-size:14px;
-  height:90px;resize:none;
-}
-
-.submit-wrap{padding:16px}
-.submit-btn{
-  width:100%;padding:15px;border:none;
+  background:var(--white);
   border-radius:var(--radius);
-  background:var(--red);color:#fff;
-  font-size:16px;font-weight:600;
+  border:1px solid var(--gray-200);
+  padding:12px 14px;
 }
+.notes-wrap textarea{
+  width:100%;border:none;outline:none;
+  font-family:var(--font);font-size:14px;color:var(--gray-900);
+  resize:none;height:90px;background:none;
+}
+.notes-wrap textarea::placeholder{color:var(--gray-400);}
 
-.complete-screen{display:none;text-align:center;padding:40px 16px}
-.complete-screen.show{display:block}
-.complete-icon{font-size:48px;margin-bottom:16px}
+.submit-wrap{padding:16px;padding-top:8px;}
+.submit-btn{
+  width:100%;padding:15px;border-radius:var(--radius);
+  background:var(--red);color:var(--white);
+  border:none;font-family:var(--font);font-size:16px;font-weight:600;cursor:pointer;
+}
+.submit-btn:disabled{opacity:.4;cursor:default;}
 
 .toast{
-  position:fixed;bottom:24px;left:50%;
-  transform:translateX(-50%);
-  background:#333;color:#fff;
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
   padding:12px 20px;border-radius:var(--radius);
-  opacity:0;transition:.2s;
+  font-size:14px;font-weight:500;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  z-index:999;max-width:90vw;text-align:center;
 }
-.toast.show{opacity:1}
+.toast.success{background:#1A3A26;color:#fff;}
+.toast.error{background:#3A1A1A;color:#fff;}
+.toast.show{opacity:1;}
+
+.complete-screen{display:none;padding:40px 16px;text-align:center;}
+.complete-screen.show{display:block;}
+.complete-icon{font-size:48px;margin-bottom:16px;}
+.complete-screen h2{font-size:20px;font-weight:600;margin-bottom:8px;}
+.complete-screen p{font-size:14px;color:var(--gray-600);line-height:1.6;}
+.complete-screen .action-note{
+  margin-top:16px;padding:12px 14px;background:var(--amber-light);
+  border-radius:var(--radius-sm);border-left:3px solid var(--amber);
+  font-size:13px;color:#7A4A00;text-align:left;
+}
+.new-btn{
+  margin-top:24px;padding:14px 24px;border-radius:var(--radius);
+  background:var(--red);color:var(--white);border:none;
+  font-family:var(--font);font-size:15px;font-weight:600;cursor:pointer;
+}
 </style>
 </head>
 
@@ -121,19 +162,28 @@ textarea{
 
 <div id="form-screen">
   <div class="page-header">
-    <h1>Brindisa DSE Self-Assessment – Office & Home (Hybrid)</h1>
+    <h1>Brindisa DSE Self-Assessment – Office &amp; Home (Hybrid)</h1>
     <p id="today-date"></p>
   </div>
 
   <div class="instructions">
-    <p><strong>IMPORTANT</strong><br>
-    This DSE self‑assessment applies to staff who use display screen equipment daily.
-    If you work both from home and in the office, this assessment must cover each workstation you use.
-    You may complete one assessment covering both, or separate assessments if setups differ.
+    <p>
+      <strong>IMPORTANT – Please read before completing</strong><br>
+      This DSE self-assessment applies to staff who use display screen equipment daily for continuous periods of an hour or more.<br><br>
+      If you work both from home (WFH) and in the office, this assessment must cover each workstation you regularly use.
+      You may complete one assessment covering both locations, or separate assessments if your setups differ significantly.<br><br>
+      Complete all sections honestly. For each question select Yes, No, or Action Needed.
+      Any Action Needed responses will be flagged to Facilities, who will review and follow up where required.
     </p>
-    <p><strong>GDPR:</strong> We collect your Brindisa email address and DSE responses for Health & Safety compliance.
-    Data is stored securely in Airtable and accessed only by authorised staff.
+    <p class="small">
+      <strong>GDPR / Data protection:</strong> We collect your Brindisa email address and DSE responses for Health &amp; Safety compliance and to follow up any actions.
+      Data is stored securely in Airtable and accessed only by authorised staff.
     </p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">0 of 25 questions answered</div>
   </div>
 
   <div class="form-body">
@@ -141,115 +191,309 @@ textarea{
     <div class="section-title">About you</div>
     <div class="card">
       <div class="field-row">
-        <div class="field-label">Brindisa email <span>*</span></div>
-        <input type="email" id="email" placeholder="you@brindisa.com">
+        <div class="field-label">Your Brindisa email <span>*</span></div>
+        <input type="email" id="user-email" placeholder="you@brindisa.com" autocomplete="email" />
       </div>
+
       <div class="field-row">
         <div class="field-label">Assessment type <span>*</span></div>
-        <select id="type">
-          <option value="">Select…</option>
-          <option>Office</option>
-          <option>Home (WFH)</option>
-          <option>Both (Hybrid)</option>
+        <select id="assessment-type">
+          <option value="">Select...</option>
+          <option value="Office">Office</option>
+          <option value="Home (WFH)">Home (WFH)</option>
+          <option value="Both (Hybrid)">Both (Hybrid)</option>
         </select>
       </div>
+
       <div class="field-row">
         <div class="field-label">Site <span>*</span></div>
         <select id="site">
-          <option value="">Select…</option>
+          <option value="">Select...</option>
           <option>Balham</option>
           <option>Hildreth Street</option>
           <option>Borough Market</option>
           <option>Grantham</option>
           <option>Home / Remote</option>
+          <option>Multiple / Hybrid</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field-label">Workstation location</div>
+        <select id="workstation">
+          <option value="">Select...</option>
+          <option>Coach House Floor 1</option>
+          <option>Coach House Floor 2</option>
+          <option>Coach House Floor 3</option>
+          <option>Schoolhouse Sales &amp; Marketing</option>
+          <option>Schoolhouse MD Office</option>
+          <option>Schoolhouse HR Office</option>
+          <option>Warehouse Despatch Office</option>
+          <option>Warehouse Ops Office</option>
+          <option>Grantham Ops Office</option>
+          <option>Hildreth Office</option>
+          <option>Borough Market Office</option>
+          <option>Office (General)</option>
+          <option>Home (WFH)</option>
+          <option>Both (Hybrid)</option>
         </select>
       </div>
     </div>
 
-    <div class="section-title">Assessment</div>
+    <!-- 1. Keyboard -->
+    <div class="section-title">1. Keyboard</div>
     <div class="section-block">
-      <div class="question-row" data-field="fldERucNqojG7IHJV">
-        <div class="question-text">Is the keyboard separate from the screen?</div>
-        <div class="answer-btns">
-          <button class="ans-btn yes">Yes</button>
-          <button class="ans-btn no">No</button>
-          <button class="ans-btn action">Action</button>
-        </div>
-      </div>
-      <!-- Repeat for remaining 24 questions (unchanged field IDs) -->
+      <div class="question-row" data-field="fldERucNqojG7IHJV"><div class="question-text">Is the keyboard separate from the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldLJi24KkOX3HyU7"><div class="question-text">Does the keyboard tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldie2P4Z6A5c678A"><div class="question-text">Is it possible to find a comfortable keying position?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldwaePs3gR8zr6Jk"><div class="question-text">Are you able to use the keyboard comfortably and without strain?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld6TRtSegjN3XdcC"><div class="question-text">Are the keyboard characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 2. Mouse -->
+    <div class="section-title">2. Mouse / Trackball</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldtwDk89VJHqnF7s"><div class="question-text">Is the device suitable for the tasks it is used for?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldpTJMV1BJhxpsPr"><div class="question-text">Is the device positioned close to the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqWg0KqT1hSFiBk"><div class="question-text">Is there support for the device user's wrist and forearm?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldei3oZKOdOTOf31"><div class="question-text">Does the device work smoothly at a speed that suits the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoDUY67g40vYit0"><div class="question-text">Can the user easily adjust software settings for pointer speed?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 3. Display Screen -->
+    <div class="section-title">3. Display Screen</div>
+    <div class="section-block">
+      <div class="question-row" data-field="flduf9cIpjMtdT3SX"><div class="question-text">Are the characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldevWdE3QSSHNkwT"><div class="question-text">Is the text size comfortable to read?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldVAXo0ckOHuk5D4"><div class="question-text">Is the image stable, free of flicker and jitter?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldMPKxKKvlj4JflP"><div class="question-text">Is the screen's specification suitable for its intended use?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldhAnGwDRAGpW73a"><div class="question-text">Are brightness and contrast adjustable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldV7lbOGdgBI87aQ"><div class="question-text">Does the screen swivel and tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldt2AdcH8dF3yWeY"><div class="question-text">Is the screen free from glare and reflections?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqJUmeMcbmf0lr8"><div class="question-text">Are adjustable window coverings provided and in adequate condition?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 4. Software -->
+    <div class="section-title">4. Software</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldXRXb7DaS6zvkKK"><div class="question-text">Is the software suitable for the task?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 5. Furniture -->
+    <div class="section-title">5. Furniture</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldmIpaZb5m8zzvKi"><div class="question-text">Is the work surface large enough for all necessary equipment?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9ffxW6LGvJf3qZ"><div class="question-text">Can the user comfortably reach all equipment and papers?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldbBytj0lX9iK5yT"><div class="question-text">Are surfaces free from glare and reflection?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldxkoyK4o4NeHrFU"><div class="question-text">Is the chair suitable and stable with working adjustments?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="flduoyTNPaULfXXZ7"><div class="question-text">Is the chair adjusted correctly for the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldKQzHmVoFHB0NLC"><div class="question-text">Is the small of the back supported by the chair's backrest?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldRkhA0On80nat8z"><div class="question-text">Are forearms horizontal and eyes at roughly the same height as the top of the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoJNSiSslqBrEcB"><div class="question-text">Are feet flat on the floor without too much pressure from the seat?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 6. Environment -->
+    <div class="section-title">6. Environment</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldSpzMreJH30t8Vf"><div class="question-text">Is there enough room to change position and vary movement?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldjD6899AN39aupo"><div class="question-text">Is the lighting suitable — not too bright or too dim?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld3h2G64FdeCqHts"><div class="question-text">Does the air feel comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldzuEp2mdF22YtWQ"><div class="question-text">Are levels of heat comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldHRCTV4mCC96zJE"><div class="question-text">Are levels of noise comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 7. Final Questions -->
+    <div class="section-title">7. Final Questions</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldav11T3HaeQJ5Ny"><div class="question-text">Have you experienced any discomfort or symptoms you attribute to DSE work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldgeeKBfz66zjgLX"><div class="question-text">Have you been advised of your entitlement to eye and eyesight testing?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9JpD5X1spGnYR3"><div class="question-text">Do you take regular breaks or changes of activity away from DSE work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <div class="section-title">Actions / Notes</div>
     <div class="notes-wrap">
-      <textarea id="notes" placeholder="Describe any issues or actions needed…"></textarea>
+      <textarea id="notes" placeholder="Describe any issues, actions needed, or additional comments..."></textarea>
     </div>
 
   </div>
 
   <div class="submit-wrap">
-    <button class="submit-btn" id="submit">Submit assessment</button>
+    <button class="submit-btn" id="submit-btn" type="button">Submit assessment</button>
   </div>
 </div>
 
-<div class="complete-screen" id="done">
-  <div class="complete-icon">✅</div>
-  <h2>Assessment submitted</h2>
-  <p>Your DSE self‑assessment has been saved. Facilities will follow up if required.</p>
+<div class="complete-screen" id="complete-screen">
+  <div class="complete-icon" id="complete-icon">✅</div>
+  <h2 id="complete-title">Assessment submitted</h2>
+  <p id="complete-msg">Your DSE self-assessment has been saved. A copy has been sent to the facilities team.</p>
+  <div class="action-note" id="action-note" style="display:none;">
+    One or more items were marked as <strong>Action Needed</strong>. These have been flagged and will be followed up by Facilities.
+  </div>
+  <button class="new-btn" onclick="resetForm()">Start new assessment</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
-  const AT_BASE="appPOhZzIvJ8JE1Ib";
-  const AT_TABLE="tblQMfTxXBOw6NBa0";
-  const AT_KEY="REDACTED";
+(function() {
+  // === Airtable ===
+  var AT_BASE  = "appPOhZzIvJ8JE1Ib";
+  var AT_TABLE = "tblQMfTxXBOw6NBa0";
+  var AT_KEY   = "patn3pfQRYPvDnR4u.699ee50c2c49d7bd3baf1bc6f27d89e2874be3d8de8f4f926b919c74ef672199"; // <-- paste your key here
 
-  const answers={};
+  var answers = {};
+  var TOTAL_Q = 25;
 
   document.getElementById("today-date").textContent =
-    new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+    new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
 
-  document.querySelectorAll(".question-row").forEach(row=>{
-    const field=row.dataset.field;
-    row.querySelectorAll(".ans-btn").forEach(btn=>{
-      btn.onclick=()=>{
-        row.querySelectorAll(".ans-btn").forEach(b=>b.classList.remove("selected"));
+  // === Hybrid/site logic (fixes confusion) ===
+  var assessTypeEl = document.getElementById("assessment-type");
+  var siteEl = document.getElementById("site");
+
+  function applySiteRules() {
+    var t = assessTypeEl.value;
+
+    if (t === "Both (Hybrid)") {
+      siteEl.value = "Multiple / Hybrid";
+      siteEl.disabled = true;
+      siteEl.style.opacity = "0.6";
+      return;
+    }
+
+    if (t === "Home (WFH)") {
+      siteEl.value = "Home / Remote";
+      siteEl.disabled = true;
+      siteEl.style.opacity = "0.6";
+      return;
+    }
+
+    // Office (or blank)
+    if (siteEl.value === "Multiple / Hybrid" || siteEl.value === "Home / Remote") {
+      siteEl.value = "";
+    }
+    siteEl.disabled = false;
+    siteEl.style.opacity = "1";
+  }
+
+  assessTypeEl.addEventListener("change", applySiteRules);
+
+  // === Answer buttons ===
+  document.querySelectorAll(".question-row").forEach(function(row) {
+    var fieldId = row.getAttribute("data-field");
+    row.querySelectorAll(".ans-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        row.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
         btn.classList.add("selected");
-        answers[field]=btn.classList.contains("yes")?"Yes":btn.classList.contains("no")?"No":"Action Needed";
-      };
+        var val = btn.classList.contains("yes") ? "Yes" : btn.classList.contains("no") ? "No" : "Action Needed";
+        answers[fieldId] = val;
+        updateProgress();
+      });
     });
   });
 
-  document.getElementById("submit").onclick=()=>{
-    const email=document.getElementById("email").value.trim();
-    if(!/^[^@]+@brindisa\.com$/i.test(email)){toast("Use your @brindisa.com email");return;}
+  function updateProgress() {
+    var count = Object.keys(answers).length;
+    var pct = Math.round((count / TOTAL_Q) * 100);
+    document.getElementById("progress-fill").style.width = pct + "%";
+    document.getElementById("progress-label").textContent = count + " of " + TOTAL_Q + " questions answered";
+  }
 
-    const fields={
-      fldMH96vWfvXmdxdx:email,
-      flds2EbHtDzxDHcWP:document.getElementById("type").value,
-      fldLsMqJ0BdVuYhu7:document.getElementById("site").value,
-      ...answers
+  function isValidBrindisaEmail(email) {
+    return /^[^@]+@brindisa\.com$/i.test(email.trim());
+  }
+
+  document.getElementById("submit-btn").addEventListener("click", function() {
+    var email      = document.getElementById("user-email").value.trim().toLowerCase();
+    var assessType = document.getElementById("assessment-type").value;
+    var site       = document.getElementById("site").value;
+    var workstation = document.getElementById("workstation").value;
+
+    if (!email) { showToast("Please enter your Brindisa email address.", "error"); return; }
+    if (!isValidBrindisaEmail(email)) { showToast("Please use your @brindisa.com email address.", "error"); return; }
+    if (!assessType) { showToast("Please select an assessment type.", "error"); return; }
+
+    // Apply rules once more before validation (belt + braces)
+    applySiteRules();
+    site = document.getElementById("site").value;
+
+    if (!site) { showToast("Please select your site.", "error"); return; }
+    if (Object.keys(answers).length < TOTAL_Q) { showToast("Please answer all " + TOTAL_Q + " questions.", "error"); return; }
+
+    var btn = this;
+    btn.disabled = true; btn.textContent = "Submitting...";
+
+    var today     = new Date().toISOString().split("T")[0];
+    var emailSlug = email.split("@")[0].substring(0,6).toUpperCase();
+    var assessId  = "DSE-" + emailSlug + "-" + Date.now().toString().slice(-6);
+
+    var hasAction = Object.values(answers).some(function(v) { return v === "Action Needed"; });
+    var overallResult = hasAction ? "Actions Required" : "All Pass";
+
+    // === MINIMISED Airtable payload ===
+    // Legacy duplicate identity field removed.
+    var fields = {
+      fldYU58czQjhDkJeo: assessId,
+      fldeVILh6HgSj1l65: today,
+      fldMH96vWfvXmdxdx: email,            // identity (email only)
+      fldLsMqJ0BdVuYhu7: site,
+      fldeZV9HiEDqpGeiL: overallResult,
+      flds2EbHtDzxDHcWP: assessType
     };
 
-    fetch(`https://api.airtable.com/v0/${AT_BASE}/${AT_TABLE}`,{
-      method:"POST",
-      headers:{
-        "Authorization":"Bearer "+AT_KEY,
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({records:[{fields}]})
-    }).then(()=>{
-      document.getElementById("form-screen").style.display="none";
-      document.getElementById("done").classList.add("show");
-    }).catch(e=>toast("Submission failed"));
+    if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;
+
+    Object.assign(fields, answers);
+
+    var notes = document.getElementById("notes").value.trim();
+    if (notes) fields.fldWUWM9udk9y1tip = notes;
+
+    fetch("https://api.airtable.com/v0/" + AT_BASE + "/" + AT_TABLE, {
+      method: "POST",
+      headers: {"Content-Type":"application/json","Authorization":"Bearer " + AT_KEY},
+      body: JSON.stringify({records:[{fields:fields}]})
+    }).then(function(res) {
+      if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || "API error"); });
+      return res.json();
+    }).then(function() {
+      document.getElementById("form-screen").style.display = "none";
+      var cs = document.getElementById("complete-screen");
+      cs.classList.add("show");
+      document.getElementById("complete-title").textContent = hasAction ? "Assessment submitted — actions flagged" : "Assessment submitted";
+      document.getElementById("complete-icon").textContent = hasAction ? "⚠️" : "✅";
+      if (hasAction) document.getElementById("action-note").style.display = "block";
+    }).catch(function(e) {
+      showToast("Failed: " + e.message, "error");
+      btn.disabled = false; btn.textContent = "Submit assessment";
+    });
+  });
+
+  function showToast(msg, type) {
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.className = "toast " + type + " show";
+    setTimeout(function() { t.classList.remove("show"); }, 3500);
+  }
+
+  window.resetForm = function() {
+    answers = {};
+    document.getElementById("user-email").value = "";
+    document.getElementById("assessment-type").value = "";
+    document.getElementById("site").value = "";
+    document.getElementById("site").disabled = false;
+    document.getElementById("site").style.opacity = "1";
+    document.getElementById("workstation").value = "";
+    document.getElementById("notes").value = "";
+    document.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+    document.getElementById("action-note").style.display = "none";
+    document.getElementById("complete-screen").classList.remove("show");
+    document.getElementById("form-screen").style.display = "block";
+    document.getElementById("submit-btn").disabled = false;
+    document.getElementById("submit-btn").textContent = "Submit assessment";
+    updateProgress();
+    window.scrollTo(0, 0);
   };
 
-  function toast(msg){
-    const t=document.getElementById("toast");
-    t.textContent=msg;t.classList.add("show");
-    setTimeout(()=>t.classList.remove("show"),3000);
-  }
+  updateProgress();
 })();
 </script>
 
