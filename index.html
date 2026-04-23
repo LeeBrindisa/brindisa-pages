@@ -150,6 +150,30 @@ body{
   border-radius:var(--radius-sm);border-left:3px solid var(--amber);
   font-size:13px;color:#7A4A00;text-align:left;
 }
+.hybrid-hint{
+  display:none;
+  margin:6px 14px 10px;
+  padding:8px 10px;
+  background:#EBF4FB;
+  border-left:3px solid #2980B9;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  color:#1A3A50;
+  line-height:1.5;
+}
+.hybrid-hint.show{display:block;}
+.question-row.hidden-conditional{
+  display:none;
+}
+.question-row.hidden-conditional.visible{
+  display:flex;
+}
+.gdpr-footer{
+  margin:0 16px 8px;
+  font-size:12px;
+  color:var(--gray-400);
+  line-height:1.5;
+}
 .new-btn{
   margin-top:24px;padding:14px 24px;border-radius:var(--radius);
   background:var(--red);color:var(--white);border:none;
@@ -162,7 +186,7 @@ body{
 
 <div id="form-screen">
   <div class="page-header">
-    <h1>Brindisa DSE Self-Assessment – Office &amp; Home (Hybrid)</h1>
+    <h1>DSE Self-Assessment – Office &amp; Home (Hybrid)</h1>
     <p id="today-date"></p>
   </div>
 
@@ -175,15 +199,11 @@ body{
       Complete all sections honestly. For each question select Yes, No, or Action Needed.
       Any Action Needed responses will be flagged to Facilities, who will review and follow up where required.
     </p>
-    <p class="small">
-      <strong>GDPR / Data protection:</strong> We collect your Brindisa email address and DSE responses for Health &amp; Safety compliance and to follow up any actions.
-      Data is stored securely in Airtable and accessed only by authorised staff.
-    </p>
   </div>
 
   <div class="progress-wrap">
     <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <div class="progress-label" id="progress-label">0 of 25 questions answered</div>
+    <div class="progress-label" id="progress-label">0 of 26 questions answered</div>
   </div>
 
   <div class="form-body">
@@ -191,8 +211,8 @@ body{
     <div class="section-title">About you</div>
     <div class="card">
       <div class="field-row">
-        <div class="field-label">Your Brindisa email <span>*</span></div>
-        <input type="email" id="user-email" placeholder="you@brindisa.com" autocomplete="email" />
+        <div class="field-label">Your work email <span>*</span></div>
+        <input type="email" id="user-email" placeholder="you@company.com" autocomplete="email" />
       </div>
 
       <div class="field-row">
@@ -200,21 +220,24 @@ body{
         <select id="assessment-type">
           <option value="">Select...</option>
           <option value="Office">Office</option>
-          <option value="Home (WFH)">Home (WFH)</option>
-          <option value="Both (Hybrid)">Both (Hybrid)</option>
+          <option value="WFH">Home (WFH)</option>
+          <option value="Both (Hybrid)">Both (Office &amp; Home)</option>
         </select>
+      </div>
+      <div class="hybrid-hint" id="hybrid-hint">
+        ✏️ <strong>You've selected Both (Office &amp; Home).</strong> This covers both your office and home workstations in one assessment — your location fields have been filled in automatically. Just answer the questions for both setups combined.
       </div>
 
       <div class="field-row">
         <div class="field-label">Site <span>*</span></div>
         <select id="site">
           <option value="">Select...</option>
-          <option>Balham</option>
-          <option>Hildreth Street</option>
-          <option>Borough Market</option>
-          <option>Grantham</option>
-          <option>Home / Remote</option>
-          <option>Multiple / Hybrid</option>
+          <option value="Balham HQ">Balham HQ</option>
+          <option value="Hildreth Street">Hildreth Street</option>
+          <option value="Borough Market">Borough Market</option>
+          <option value="Grantham">Grantham</option>
+          <option value="Home / Remote">Home / Remote</option>
+          <option value="Multiple / Hybrid">Multiple / Hybrid</option>
         </select>
       </div>
 
@@ -235,7 +258,7 @@ body{
           <option>Borough Market Office</option>
           <option>Office (General)</option>
           <option>Home (WFH)</option>
-          <option>Both (Hybrid)</option>
+          <option value="Both (Hybrid)">Both (Hybrid)</option>
         </select>
       </div>
     </div>
@@ -290,6 +313,7 @@ body{
       <div class="question-row" data-field="fldKQzHmVoFHB0NLC"><div class="question-text">Is the small of the back supported by the chair's backrest?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fldRkhA0On80nat8z"><div class="question-text">Are forearms horizontal and eyes at roughly the same height as the top of the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fldoJNSiSslqBrEcB"><div class="question-text">Are feet flat on the floor without too much pressure from the seat?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row hidden-conditional" id="clutter-row" data-field="fldvAcyTsfmvtSclS"><div class="question-text">Is the desk free from clutter with enough space to work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
     <!-- 6. Environment -->
@@ -297,6 +321,7 @@ body{
     <div class="section-block">
       <div class="question-row" data-field="fldSpzMreJH30t8Vf"><div class="question-text">Is there enough room to change position and vary movement?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fldjD6899AN39aupo"><div class="question-text">Is the lighting suitable — not too bright or too dim?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld2bl0D91TUvhsD7"><div class="question-text">Can the lighting be adjusted (lights on/off or dimmed)?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fld3h2G64FdeCqHts"><div class="question-text">Does the air feel comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fldzuEp2mdF22YtWQ"><div class="question-text">Are levels of heat comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
       <div class="question-row" data-field="fldHRCTV4mCC96zJE"><div class="question-text">Are levels of noise comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
@@ -315,6 +340,10 @@ body{
       <textarea id="notes" placeholder="Describe any issues, actions needed, or additional comments..."></textarea>
     </div>
 
+  </div>
+
+  <div class="gdpr-footer">
+    <strong>Data &amp; privacy:</strong> We collect your email address and DSE responses for Health &amp; Safety compliance and to follow up any actions. Data is stored securely and accessed only by authorised staff.
   </div>
 
   <div class="submit-wrap">
@@ -339,41 +368,48 @@ body{
   // === Airtable ===
   var AT_BASE  = "appPOhZzIvJ8JE1Ib";
   var AT_TABLE = "tblQMfTxXBOw6NBa0";
-  var AT_KEY   = "patn3pfQRYPvDnR4u.699ee50c2c49d7bd3baf1bc6f27d89e2874be3d8de8f4f926b919c74ef672199"; // <-- paste your key here
+  var AT_KEY   = "patn3pfQRYPvDnR4u.f467023a6db910a35c5b5bf6dbb4a21bc3c5ba37c474a9b8e803b61ac3f1ef4b"; // <-- paste your PAT token here
 
   var answers = {};
-  var TOTAL_Q = 25;
+  var TOTAL_Q = 27;
 
   document.getElementById("today-date").textContent =
     new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
 
-  // === Hybrid/site logic (fixes confusion) ===
+  // === Auto-set site based on assessment type ===
   var assessTypeEl = document.getElementById("assessment-type");
   var siteEl = document.getElementById("site");
 
+  var workstationEl = document.getElementById("workstation");
+  var hybridHint = document.getElementById("hybrid-hint");
+
   function applySiteRules() {
     var t = assessTypeEl.value;
-
     if (t === "Both (Hybrid)") {
+      hybridHint.classList.add("show");
       siteEl.value = "Multiple / Hybrid";
       siteEl.disabled = true;
       siteEl.style.opacity = "0.6";
-      return;
-    }
-
-    if (t === "Home (WFH)") {
+      workstationEl.value = "Both (Hybrid)";
+      workstationEl.disabled = true;
+      workstationEl.style.opacity = "0.6";
+    } else if (t === "WFH") {
+      hybridHint.classList.remove("show");
       siteEl.value = "Home / Remote";
       siteEl.disabled = true;
       siteEl.style.opacity = "0.6";
-      return;
+      if (workstationEl.value === "Both (Hybrid)") workstationEl.value = "Home (WFH)";
+      workstationEl.disabled = false;
+      workstationEl.style.opacity = "1";
+    } else {
+      hybridHint.classList.remove("show");
+      if (siteEl.value === "Home / Remote" || siteEl.value === "Multiple / Hybrid") siteEl.value = "";
+      siteEl.disabled = false;
+      siteEl.style.opacity = "1";
+      if (workstationEl.value === "Both (Hybrid)" || workstationEl.value === "Home (WFH)") workstationEl.value = "";
+      workstationEl.disabled = false;
+      workstationEl.style.opacity = "1";
     }
-
-    // Office (or blank)
-    if (siteEl.value === "Multiple / Hybrid" || siteEl.value === "Home / Remote") {
-      siteEl.value = "";
-    }
-    siteEl.disabled = false;
-    siteEl.style.opacity = "1";
   }
 
   assessTypeEl.addEventListener("change", applySiteRules);
@@ -387,38 +423,56 @@ body{
         btn.classList.add("selected");
         var val = btn.classList.contains("yes") ? "Yes" : btn.classList.contains("no") ? "No" : "Action Needed";
         answers[fieldId] = val;
+        // Show clutter question only if desk size is No or Action Needed
+        if (fieldId === "fldmIpaZb5m8zzvKi") {
+          var clutterRow = document.getElementById("clutter-row");
+          if (val === "No" || val === "Action Needed") {
+            clutterRow.classList.add("visible");
+          } else {
+            clutterRow.classList.remove("visible");
+            // Clear the clutter answer if hidden
+            delete answers["fldvAcyTsfmvtSclS"];
+            clutterRow.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+          }
+        }
         updateProgress();
       });
     });
   });
 
-  function updateProgress() {
-    var count = Object.keys(answers).length;
-    var pct = Math.round((count / TOTAL_Q) * 100);
-    document.getElementById("progress-fill").style.width = pct + "%";
-    document.getElementById("progress-label").textContent = count + " of " + TOTAL_Q + " questions answered";
+  function getTotalQ() {
+    // Clutter question only counts if visible
+    var clutterVisible = document.getElementById("clutter-row").classList.contains("visible");
+    return clutterVisible ? TOTAL_Q : TOTAL_Q - 1;
   }
 
-  function isValidBrindisaEmail(email) {
-    return /^[^@]+@brindisa\.com$/i.test(email.trim());
+  function updateProgress() {
+    var count = Object.keys(answers).length;
+    var total = getTotalQ();
+    var pct = Math.round((count / total) * 100);
+    document.getElementById("progress-fill").style.width = pct + "%";
+    document.getElementById("progress-label").textContent = count + " of " + total + " questions answered";
+  }
+
+  function isValidWorkEmail(email) {
+    return /^[^@]+@[^@]+\.[^@]+$/i.test(email.trim());
   }
 
   document.getElementById("submit-btn").addEventListener("click", function() {
-    var email      = document.getElementById("user-email").value.trim().toLowerCase();
-    var assessType = document.getElementById("assessment-type").value;
-    var site       = document.getElementById("site").value;
+    var email       = document.getElementById("user-email").value.trim().toLowerCase();
+    var assessType  = document.getElementById("assessment-type").value;
+    var site        = document.getElementById("site").value;
     var workstation = document.getElementById("workstation").value;
 
-    if (!email) { showToast("Please enter your Brindisa email address.", "error"); return; }
-    if (!isValidBrindisaEmail(email)) { showToast("Please use your @brindisa.com email address.", "error"); return; }
-    if (!assessType) { showToast("Please select an assessment type.", "error"); return; }
+    if (!email)                        { showToast("Please enter your work email address.", "error"); return; }
+    if (!isValidWorkEmail(email))  { showToast("Please use your work email address.", "error"); return; }
+    if (!assessType)                   { showToast("Please select an assessment type.", "error"); return; }
 
-    // Apply rules once more before validation (belt + braces)
     applySiteRules();
     site = document.getElementById("site").value;
 
-    if (!site) { showToast("Please select your site.", "error"); return; }
-    if (Object.keys(answers).length < TOTAL_Q) { showToast("Please answer all " + TOTAL_Q + " questions.", "error"); return; }
+    if (!site)                                         { showToast("Please select your site.", "error"); return; }
+    if (Object.keys(answers).length < getTotalQ())         { showToast("Please answer all " + getTotalQ() + " questions.", "error"); return; }
 
     var btn = this;
     btn.disabled = true; btn.textContent = "Submitting...";
@@ -427,31 +481,33 @@ body{
     var emailSlug = email.split("@")[0].substring(0,6).toUpperCase();
     var assessId  = "DSE-" + emailSlug + "-" + Date.now().toString().slice(-6);
 
-    var hasAction = Object.values(answers).some(function(v) { return v === "Action Needed"; });
+    var hasAction    = Object.values(answers).some(function(v) { return v === "Action Needed"; });
     var overallResult = hasAction ? "Actions Required" : "All Pass";
 
-    // === MINIMISED Airtable payload ===
-    // Legacy duplicate identity field removed.
+    // === Airtable payload — field IDs verified against live table ===
     var fields = {
-      fldYU58czQjhDkJeo: assessId,
-      fldeVILh6HgSj1l65: today,
-      fldMH96vWfvXmdxdx: email,            // identity (email only)
-      fldLsMqJ0BdVuYhu7: site,
-      fldeZV9HiEDqpGeiL: overallResult,
-      flds2EbHtDzxDHcWP: assessType
+      fldYU58czQjhDkJeo: assessId,          // Assessment ID (text)
+      fldeVILh6HgSj1l65: today,             // Date
+      fldLsMqJ0BdVuYhu7: site,              // Site (single select)
+      fldeZV9HiEDqpGeiL: overallResult,     // Overall Result (single select)
+      flds2EbHtDzxDHcWP: assessType         // Assessment Type (single select: "Office" or "WFH")
     };
 
-    if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;
+    // Email stored in notes field as plain text since no dedicated email field exists in table
+    // If you want to add a dedicated email field in Airtable, add its field ID here
+    var notesValue = "Submitted by: " + email;
+    var userNotes  = document.getElementById("notes").value.trim();
+    if (userNotes) notesValue += "\n\n" + userNotes;
+    fields.fldWUWM9udk9y1tip = notesValue;  // Notes (long text)
+
+    if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;  // Workstation (text)
 
     Object.assign(fields, answers);
-
-    var notes = document.getElementById("notes").value.trim();
-    if (notes) fields.fldWUWM9udk9y1tip = notes;
 
     fetch("https://api.airtable.com/v0/" + AT_BASE + "/" + AT_TABLE, {
       method: "POST",
       headers: {"Content-Type":"application/json","Authorization":"Bearer " + AT_KEY},
-      body: JSON.stringify({records:[{fields:fields}]})
+      body: JSON.stringify({records:[{fields:fields}], typecast: true})
     }).then(function(res) {
       if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || "API error"); });
       return res.json();
@@ -460,7 +516,7 @@ body{
       var cs = document.getElementById("complete-screen");
       cs.classList.add("show");
       document.getElementById("complete-title").textContent = hasAction ? "Assessment submitted — actions flagged" : "Assessment submitted";
-      document.getElementById("complete-icon").textContent = hasAction ? "⚠️" : "✅";
+      document.getElementById("complete-icon").textContent  = hasAction ? "⚠️" : "✅";
       if (hasAction) document.getElementById("action-note").style.display = "block";
     }).catch(function(e) {
       showToast("Failed: " + e.message, "error");
@@ -476,18 +532,22 @@ body{
 
   window.resetForm = function() {
     answers = {};
-    document.getElementById("user-email").value = "";
+    document.getElementById("user-email").value    = "";
     document.getElementById("assessment-type").value = "";
-    document.getElementById("site").value = "";
-    document.getElementById("site").disabled = false;
-    document.getElementById("site").style.opacity = "1";
-    document.getElementById("workstation").value = "";
-    document.getElementById("notes").value = "";
+    document.getElementById("hybrid-hint").classList.remove("show");
+    document.getElementById("site").value          = "";
+    document.getElementById("site").disabled        = false;
+    document.getElementById("site").style.opacity   = "1";
+    document.getElementById("workstation").value    = "";
+    document.getElementById("workstation").disabled = false;
+    document.getElementById("workstation").style.opacity = "1";
+    document.getElementById("notes").value         = "";
     document.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+    document.getElementById("clutter-row").classList.remove("visible");
     document.getElementById("action-note").style.display = "none";
     document.getElementById("complete-screen").classList.remove("show");
     document.getElementById("form-screen").style.display = "block";
-    document.getElementById("submit-btn").disabled = false;
+    document.getElementById("submit-btn").disabled    = false;
     document.getElementById("submit-btn").textContent = "Submit assessment";
     updateProgress();
     window.scrollTo(0, 0);
