@@ -4,556 +4,558 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Fire Checks">
-<title>Brindisa Fire Safety Checks</title>
+<title>DSE Self-Assessment – Office & Home (Hybrid)</title>
+
 <style>
 :root {
-  --red: #C0392B; --red-light: #FDECEA; --red-border: #E8A09A;
-  --amber: #E67E22; --amber-light: #FEF3E2;
-  --green: #27AE60; --green-light: #E8F8F0;
-  --gray-50: #F8F8F7; --gray-100: #EFEFED; --gray-200: #DDDDD9;
-  --gray-400: #9A9A96; --gray-600: #5A5A57; --gray-900: #1A1A18;
-  --white: #FFFFFF; --radius: 10px; --radius-sm: 6px;
-  --font: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --red:#C0392B; --red-light:#FDECEA;
+  --amber:#E67E22; --amber-light:#FEF3E2;
+  --green:#27AE60; --green-light:#E8F8F0;
+  --gray-50:#F8F8F7; --gray-100:#EFEFED; --gray-200:#DDDDD9;
+  --gray-400:#9A9A96; --gray-600:#5A5A57; --gray-900:#1A1A18;
+  --white:#FFFFFF; --radius:10px; --radius-sm:6px;
+  --font:-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: var(--font); background: var(--gray-50); color: var(--gray-900); min-height: 100vh; max-width: 480px; margin: 0 auto; }
-
-.nav { background: var(--white); border-bottom: 1px solid var(--gray-200); display: flex; position: sticky; top: 0; z-index: 100; }
-.nav-btn { flex: 1; padding: 14px 8px; border: none; background: none; font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--gray-400); cursor: pointer; border-bottom: 2px solid transparent; }
-.nav-btn.active { color: var(--red); border-bottom-color: var(--red); }
-
-.page-header { background: var(--white); padding: 16px 16px 12px; border-bottom: 1px solid var(--gray-100); }
-.page-header h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
-.page-header p { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
-
-.instructions {
-  background: #EBF4FB; border-left: 3px solid #2980B9;
-  margin: 14px 16px 0; padding: 10px 12px; border-radius: var(--radius-sm);
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{
+  font-family:var(--font);
+  background:var(--gray-50);
+  color:var(--gray-900);
+  min-height:100vh;
+  max-width:560px;
+  margin:0 auto;
+  padding-bottom:40px;
 }
-.instructions p { font-size: 13px; color: #1A3A50; line-height: 1.5; }
-.instructions p + p { margin-top: 6px; }
 
-.screen { display: none; }
-.screen.active { display: block; }
+.page-header{
+  background:var(--white);
+  padding:16px 16px 12px;
+  border-bottom:1px solid var(--gray-100);
+  position:sticky;top:0;z-index:100;
+}
+.page-header h1{font-size:18px;font-weight:600;letter-spacing:-0.3px;}
+.page-header p{font-size:13px;color:var(--gray-400);margin-top:2px;}
 
-.form-body { padding: 16px; }
-.section-title { font-size: 11px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; margin-top: 20px; }
-.section-title:first-child { margin-top: 0; }
+.instructions{
+  background:#EBF4FB;
+  border-left:3px solid #2980B9;
+  margin:14px 16px 0;
+  padding:10px 12px;
+  border-radius:var(--radius-sm);
+}
+.instructions p{font-size:13px;color:#1A3A50;line-height:1.5;}
+.instructions .small{margin-top:8px;font-size:12px;opacity:0.95;}
 
-.card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: visible; margin-bottom: 4px; }
-.field-row { display: flex; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--gray-100); gap: 12px; }
-.field-row:last-child { border-bottom: none; }
-.field-label { font-size: 14px; color: var(--gray-900); min-width: 110px; flex-shrink: 0; }
-.field-label span { font-size: 11px; color: var(--red); margin-left: 2px; }
-.field-row select, .field-row input[type="text"], .field-row input[type="email"] { flex: 1; border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; min-width: 0; -webkit-appearance: none; }
-.field-row select { cursor: pointer; }
-.field-row input[type="email"]::placeholder { color: var(--gray-400); }
-.field-row input[readonly] { color: var(--gray-600); background: var(--gray-50); }
+.progress-wrap{padding:0 16px;margin-top:14px;}
+.progress-bar{height:3px;background:var(--gray-200);border-radius:2px;}
+.progress-fill{height:100%;background:var(--red);border-radius:2px;transition:width .3s;width:0%;}
+.progress-label{font-size:12px;color:var(--gray-400);margin-top:5px;}
 
-.autocomplete-wrap { position: relative; flex: 1; }
-.autocomplete-wrap input { width: 100%; border: none; outline: none; background: none; font-family: var(--font); font-size: 14px; color: var(--gray-600); text-align: right; -webkit-appearance: none; }
-.autocomplete-list { position: absolute; top: 100%; right: 0; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); z-index: 50; min-width: 180px; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 4px; display: none; }
-.autocomplete-list.show { display: block; }
-.autocomplete-item { padding: 10px 12px; font-size: 14px; cursor: pointer; color: var(--gray-900); }
-.autocomplete-item:hover, .autocomplete-item.active { background: var(--gray-50); }
+.form-body{padding:16px;}
+.section-title{
+  font-size:11px;font-weight:600;color:var(--gray-400);
+  text-transform:uppercase;letter-spacing:.08em;
+  margin:20px 0 10px;
+}
+.section-title:first-child{margin-top:0;}
 
-.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 14px; }
-.res-btn { padding: 16px 6px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); background: var(--white); font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--gray-600); cursor: pointer; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center; touch-action: manipulation; -webkit-appearance: none; }
-.res-btn.pass.selected { background: var(--green-light); border-color: var(--green); color: var(--green); }
-.res-btn.action.selected { background: var(--amber-light); border-color: var(--amber); color: var(--amber); }
-.res-btn.fail.selected { background: var(--red-light); border-color: var(--red); color: var(--red); }
+.card, .section-block{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--gray-200);
+  overflow:hidden;
+  margin-bottom:4px;
+}
 
-.remedial-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; margin-bottom: 4px; }
-.remedial-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 14px; cursor: pointer; }
-.remedial-header-text { font-size: 14px; font-weight: 500; color: var(--gray-900); }
-.remedial-header-sub { font-size: 12px; color: var(--gray-400); margin-top: 1px; }
-.toggle-wrap { position: relative; width: 42px; height: 24px; flex-shrink: 0; }
-.toggle-wrap input { opacity: 0; width: 0; height: 0; }
-.toggle-slider { position: absolute; inset: 0; background: var(--gray-200); border-radius: 12px; transition: background 0.2s; cursor: pointer; }
-.toggle-slider:before { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: var(--white); top: 3px; left: 3px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-.toggle-wrap input:checked + .toggle-slider { background: var(--red); }
-.toggle-wrap input:checked + .toggle-slider:before { transform: translateX(18px); }
-.remedial-body { display: none; border-top: 1px solid var(--gray-100); padding: 12px 14px; }
-.remedial-body.show { display: block; }
-.remedial-body textarea { width: 100%; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 10px 12px; font-family: var(--font); font-size: 14px; color: var(--gray-900); resize: none; height: 90px; outline: none; background: var(--gray-50); }
+.field-row{
+  display:flex;align-items:center;
+  padding:12px 14px;
+  border-bottom:1px solid var(--gray-100);
+  gap:12px;
+}
+.field-row:last-child{border-bottom:none;}
+.field-label{font-size:14px;color:var(--gray-900);flex:1;line-height:1.4;}
+.field-label span{font-size:11px;color:var(--red);margin-left:2px;}
+.field-row select{
+  border:none;outline:none;background:none;
+  font-family:var(--font);font-size:14px;color:var(--gray-600);
+  text-align:right;min-width:0;-webkit-appearance:none;
+  width:auto;max-width:200px;cursor:pointer;
+}
+.field-row input[type="email"]{
+  border:none;outline:none;background:none;
+  font-family:var(--font);font-size:14px;color:var(--gray-600);
+  text-align:right;min-width:0;width:auto;max-width:220px;
+}
+.field-row input[type="email"]::placeholder{color:var(--gray-400);}
 
-.notes-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 12px 14px; }
-.notes-wrap textarea { width: 100%; border: none; outline: none; font-family: var(--font); font-size: 14px; color: var(--gray-900); resize: none; height: 72px; background: none; }
-.notes-wrap textarea::placeholder { color: var(--gray-400); }
+.question-row{
+  display:flex;align-items:flex-start;
+  padding:12px 14px;
+  border-bottom:1px solid var(--gray-100);
+  gap:12px;
+}
+.question-row:last-child{border-bottom:none;}
+.question-text{font-size:13px;color:var(--gray-900);flex:1;line-height:1.5;padding-top:2px;}
+.answer-btns{display:flex;gap:4px;flex-shrink:0;}
+.ans-btn{
+  padding:5px 10px;border-radius:20px;
+  border:1px solid var(--gray-200);background:var(--white);
+  font-family:var(--font);font-size:12px;font-weight:500;color:var(--gray-600);
+  cursor:pointer;white-space:nowrap;touch-action:manipulation;-webkit-appearance:none;
+}
+.ans-btn.yes.selected{background:var(--green-light);border-color:var(--green);color:var(--green);}
+.ans-btn.no.selected{background:var(--red-light);border-color:var(--red);color:var(--red);}
+.ans-btn.action.selected{background:var(--amber-light);border-color:var(--amber);color:var(--amber);}
 
-.submit-wrap { padding: 16px; padding-top: 8px; }
-.submit-btn { width: 100%; padding: 15px; border-radius: var(--radius); background: var(--red); color: var(--white); border: none; font-family: var(--font); font-size: 16px; font-weight: 600; cursor: pointer; }
-.submit-btn:disabled { opacity: 0.4; cursor: default; }
+.notes-wrap{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--gray-200);
+  padding:12px 14px;
+}
+.notes-wrap textarea{
+  width:100%;border:none;outline:none;
+  font-family:var(--font);font-size:14px;color:var(--gray-900);
+  resize:none;height:90px;background:none;
+}
+.notes-wrap textarea::placeholder{color:var(--gray-400);}
 
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 12px 20px; border-radius: var(--radius); font-size: 14px; font-weight: 500; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 999; max-width: 90vw; text-align: center; }
-.toast.success { background: #1A3A26; color: #fff; }
-.toast.error { background: #3A1A1A; color: #fff; }
-.toast.show { opacity: 1; }
+.submit-wrap{padding:16px;padding-top:8px;}
+.submit-btn{
+  width:100%;padding:15px;border-radius:var(--radius);
+  background:var(--red);color:var(--white);
+  border:none;font-family:var(--font);font-size:16px;font-weight:600;cursor:pointer;
+}
+.submit-btn:disabled{opacity:.4;cursor:default;}
 
-.recent-body { padding: 16px; }
-.filter-row { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.filter-row::-webkit-scrollbar { display: none; }
-.filter-chip { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--gray-200); background: var(--white); font-family: var(--font); font-size: 13px; color: var(--gray-600); cursor: pointer; white-space: nowrap; flex-shrink: 0; }
-.filter-chip.active { background: var(--red); border-color: var(--red); color: var(--white); }
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  padding:12px 20px;border-radius:var(--radius);
+  font-size:14px;font-weight:500;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  z-index:999;max-width:90vw;text-align:center;
+}
+.toast.success{background:#1A3A26;color:#fff;}
+.toast.error{background:#3A1A1A;color:#fff;}
+.toast.show{opacity:1;}
 
-.check-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 14px; margin-bottom: 10px; }
-.check-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-.check-type { font-size: 15px; font-weight: 600; color: var(--gray-900); }
-.check-site { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
-.result-badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; flex-shrink: 0; margin-left: 8px; }
-.badge-pass { background: var(--green-light); color: var(--green); }
-.badge-action { background: var(--amber-light); color: var(--amber); }
-.badge-fail { background: var(--red-light); color: var(--red); }
-.check-meta { display: flex; gap: 12px; font-size: 12px; color: var(--gray-400); margin-top: 6px; flex-wrap: wrap; }
-.remedial-flag { margin-top: 8px; padding: 8px 10px; background: var(--amber-light); border-radius: var(--radius-sm); font-size: 12px; color: #7A4A00; border-left: 3px solid var(--amber); }
-.empty-state { text-align: center; padding: 48px 16px; color: var(--gray-400); font-size: 14px; }
-.loading { text-align: center; padding: 48px; color: var(--gray-400); font-size: 14px; }
-.error-state { background: var(--red-light); border: 1px solid var(--red-border); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; font-size: 13px; color: var(--red); }
+.complete-screen{display:none;padding:40px 16px;text-align:center;}
+.complete-screen.show{display:block;}
+.complete-icon{font-size:48px;margin-bottom:16px;}
+.complete-screen h2{font-size:20px;font-weight:600;margin-bottom:8px;}
+.complete-screen p{font-size:14px;color:var(--gray-600);line-height:1.6;}
+.complete-screen .action-note{
+  margin-top:16px;padding:12px 14px;background:var(--amber-light);
+  border-radius:var(--radius-sm);border-left:3px solid var(--amber);
+  font-size:13px;color:#7A4A00;text-align:left;
+}
+.hybrid-hint{
+  display:none;
+  margin:6px 14px 10px;
+  padding:8px 10px;
+  background:#EBF4FB;
+  border-left:3px solid #2980B9;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  color:#1A3A50;
+  line-height:1.5;
+}
+.hybrid-hint.show{display:block;}
+.question-row.hidden-conditional{
+  display:none;
+}
+.question-row.hidden-conditional.visible{
+  display:flex;
+}
+.gdpr-footer{
+  margin:0 16px 8px;
+  font-size:12px;
+  color:var(--gray-400);
+  line-height:1.5;
+}
+.new-btn{
+  margin-top:24px;padding:14px 24px;border-radius:var(--radius);
+  background:var(--red);color:var(--white);border:none;
+  font-family:var(--font);font-size:15px;font-weight:600;cursor:pointer;
+}
 </style>
 </head>
+
 <body>
 
-<div id="screen-auth" class="screen active">
+<div id="form-screen">
   <div class="page-header">
-    <h1>Brindisa Fire Safety Checks</h1>
-    <p>Enter your email to continue</p>
-  </div>
-
-  <div class="form-body" style="padding-top: 40px;">
-    <div class="card">
-      <div class="field-row">
-        <div class="field-label" style="min-width: auto;">Email <span>*</span></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="field-row" style="flex-direction: column; align-items: stretch; padding: 16px 14px; gap: 0;">
-        <input type="email" id="auth-email" placeholder="name@brindisa.com" style="border: none; outline: none; background: none; font-family: var(--font); font-size: 16px; color: var(--gray-900); padding: 0; -webkit-appearance: none;" />
-      </div>
-    </div>
-
-    <div id="auth-error" style="background: var(--red-light); border: 1px solid var(--red-border); border-radius: var(--radius); padding: 14px; margin: 16px; font-size: 13px; color: var(--red); display: none;"></div>
-
-    <div id="auth-loading" style="text-align: center; padding: 48px 16px; color: var(--gray-400); font-size: 14px; display: none;">Loading staff list...</div>
-  </div>
-
-  <div class="submit-wrap">
-    <button class="submit-btn" id="auth-btn" type="button">Continue</button>
-  </div>
-</div>
-
-<nav class="nav" id="nav" style="display: none;">
-  <button class="nav-btn active" id="nav-log">Log a check</button>
-  <button class="nav-btn" id="nav-recent">Recent checks</button>
-</nav>
-
-<div id="screen-log" class="screen">
-  <div class="page-header">
-    <h1>Brindisa Fire Safety Checks</h1>
+    <h1>DSE Self-Assessment – Office &amp; Home (Hybrid)</h1>
     <p id="today-date"></p>
   </div>
 
   <div class="instructions">
-    <p>Complete all required fields and select a result before submitting. If a fault is found, toggle the remedial action switch and describe the issue.</p>
-    <p>Please check a different call point or location each week to ensure full site coverage.</p>
+    <p>
+      <strong>IMPORTANT – Please read before completing</strong><br>
+      This DSE self-assessment applies to staff who use display screen equipment daily for continuous periods of an hour or more.<br><br>
+      If you work both from home (WFH) and in the office, this assessment must cover each workstation you regularly use.
+      You may complete one assessment covering both locations, or separate assessments if your setups differ significantly.<br><br>
+      Complete all sections honestly. For each question select Yes, No, or Action Needed.
+      Any Action Needed responses will be flagged to Facilities, who will review and follow up where required.
+    </p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">0 of 26 questions answered</div>
   </div>
 
   <div class="form-body">
-    <div class="section-title">Location</div>
+
+    <div class="section-title">About you</div>
     <div class="card">
+      <div class="field-row">
+        <div class="field-label">Your work email <span>*</span></div>
+        <input type="email" id="user-email" placeholder="you@company.com" autocomplete="email" />
+      </div>
+
+      <div class="field-row">
+        <div class="field-label">Assessment type <span>*</span></div>
+        <select id="assessment-type">
+          <option value="">Select...</option>
+          <option value="Office">Office</option>
+          <option value="WFH">Home (WFH)</option>
+          <option value="Both (Hybrid)">Both (Office &amp; Home)</option>
+        </select>
+      </div>
+      <div class="hybrid-hint" id="hybrid-hint">
+        ✏️ <strong>You've selected Both (Office &amp; Home).</strong> This covers both your office and home workstations in one assessment — your location fields have been filled in automatically. Just answer the questions for both setups combined.
+      </div>
+
       <div class="field-row">
         <div class="field-label">Site <span>*</span></div>
         <select id="site">
           <option value="">Select...</option>
-          <option>Balham HQ</option>
-          <option>Hildreth Street</option>
-          <option>Borough Market</option>
-          <option>Grantham</option>
+          <option value="Balham HQ">Balham HQ</option>
+          <option value="Hildreth Street">Hildreth Street</option>
+          <option value="Borough Market">Borough Market</option>
+          <option value="Grantham">Grantham</option>
+          <option value="Home / Remote">Home / Remote</option>
+          <option value="Multiple / Hybrid">Multiple / Hybrid</option>
         </select>
       </div>
-      <div class="field-row">
-        <div class="field-label">Device / location</div>
-        <div class="autocomplete-wrap">
-          <input type="text" id="device" placeholder="Type to search..." autocomplete="off" />
-          <div class="autocomplete-list" id="device-list"></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="section-title">Check details</div>
-    <div class="card">
       <div class="field-row">
-        <div class="field-label">Check type <span>*</span></div>
-        <select id="check-type">
+        <div class="field-label">Workstation location</div>
+        <select id="workstation">
           <option value="">Select...</option>
-          <option>Fire Alarm Test</option>
-          <option>Fire Door Check</option>
-          <option>Fire Extinguisher Visual</option>
-          <option>Emergency Lighting - Monthly</option>
-          <option>Full Fire Drill</option>
+          <option>Coach House Floor 1</option>
+          <option>Coach House Floor 2</option>
+          <option>Coach House Floor 3</option>
+          <option>Schoolhouse Sales &amp; Marketing</option>
+          <option>Schoolhouse MD Office</option>
+          <option>Schoolhouse HR Office</option>
+          <option>Warehouse Despatch Office</option>
+          <option>Warehouse Ops Office</option>
+          <option>Grantham Ops Office</option>
+          <option>Hildreth Office</option>
+          <option>Borough Market Office</option>
+          <option>Office (General)</option>
+          <option>Home (WFH)</option>
+          <option value="Both (Hybrid)">Both (Hybrid)</option>
         </select>
       </div>
-      <div class="field-row">
-        <div class="field-label">Frequency <span>*</span></div>
-        <select id="frequency">
-          <option value="">Select...</option>
-          <option>Weekly</option>
-          <option>Monthly</option>
-          <option>6 Monthly</option>
-          <option>Annual</option>
-        </select>
-      </div>
     </div>
 
-    <div id="evac-wrap" style="display:none;">
-      <div class="section-title">Evacuation time</div>
-      <div class="card">
-        <div class="field-row">
-          <div class="field-label">Time (minutes)</div>
-          <input type="number" id="evac-time" placeholder="e.g. 3.5" min="0" step="0.5" style="flex:1;border:none;outline:none;background:none;font-family:var(--font);font-size:14px;color:var(--gray-600);text-align:right;-webkit-appearance:none;" />
-        </div>
-      </div>
+    <!-- 1. Keyboard -->
+    <div class="section-title">1. Keyboard</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldERucNqojG7IHJV"><div class="question-text">Is the keyboard separate from the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldLJi24KkOX3HyU7"><div class="question-text">Does the keyboard tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldie2P4Z6A5c678A"><div class="question-text">Is it possible to find a comfortable keying position?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldwaePs3gR8zr6Jk"><div class="question-text">Are you able to use the keyboard comfortably and without strain?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld6TRtSegjN3XdcC"><div class="question-text">Are the keyboard characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
-    <div class="section-title">Result <span style="color:var(--red);font-size:11px;">*</span></div>
-    <div class="card">
-      <div class="result-grid">
-        <button class="res-btn pass" id="btn-pass" type="button">Pass</button>
-        <button class="res-btn action" id="btn-action" type="button">Pass with Note</button>
-        <button class="res-btn fail" id="btn-fail" type="button">Fail</button>
-      </div>
+    <!-- 2. Mouse -->
+    <div class="section-title">2. Mouse / Trackball</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldtwDk89VJHqnF7s"><div class="question-text">Is the device suitable for the tasks it is used for?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldpTJMV1BJhxpsPr"><div class="question-text">Is the device positioned close to the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqWg0KqT1hSFiBk"><div class="question-text">Is there support for the device user's wrist and forearm?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldei3oZKOdOTOf31"><div class="question-text">Does the device work smoothly at a speed that suits the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoDUY67g40vYit0"><div class="question-text">Can the user easily adjust software settings for pointer speed?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
-    <div class="section-title">Remedial action</div>
-    <div class="remedial-card">
-      <div class="remedial-header" id="remedial-header">
-        <div>
-          <div class="remedial-header-text">Remedial action required</div>
-          <div class="remedial-header-sub">Tap to flag and add details</div>
-        </div>
-        <label class="toggle-wrap">
-          <input type="checkbox" id="rem-toggle">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="remedial-body" id="rem-body">
-        <textarea id="rem-details" placeholder="Describe the defect or issue..."></textarea>
-      </div>
+    <!-- 3. Display Screen -->
+    <div class="section-title">3. Display Screen</div>
+    <div class="section-block">
+      <div class="question-row" data-field="flduf9cIpjMtdT3SX"><div class="question-text">Are the characters clear and readable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldevWdE3QSSHNkwT"><div class="question-text">Is the text size comfortable to read?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldVAXo0ckOHuk5D4"><div class="question-text">Is the image stable, free of flicker and jitter?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldMPKxKKvlj4JflP"><div class="question-text">Is the screen's specification suitable for its intended use?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldhAnGwDRAGpW73a"><div class="question-text">Are brightness and contrast adjustable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldV7lbOGdgBI87aQ"><div class="question-text">Does the screen swivel and tilt?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldt2AdcH8dF3yWeY"><div class="question-text">Is the screen free from glare and reflections?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldqJUmeMcbmf0lr8"><div class="question-text">Are adjustable window coverings provided and in adequate condition?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
     </div>
 
-    <div class="section-title">Notes</div>
+    <!-- 4. Software -->
+    <div class="section-title">4. Software</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldXRXb7DaS6zvkKK"><div class="question-text">Is the software suitable for the task?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 5. Furniture -->
+    <div class="section-title">5. Furniture</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldmIpaZb5m8zzvKi"><div class="question-text">Is the work surface large enough for all necessary equipment?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9ffxW6LGvJf3qZ"><div class="question-text">Can the user comfortably reach all equipment and papers?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldbBytj0lX9iK5yT"><div class="question-text">Are surfaces free from glare and reflection?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldxkoyK4o4NeHrFU"><div class="question-text">Is the chair suitable and stable with working adjustments?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="flduoyTNPaULfXXZ7"><div class="question-text">Is the chair adjusted correctly for the user?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldKQzHmVoFHB0NLC"><div class="question-text">Is the small of the back supported by the chair's backrest?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldRkhA0On80nat8z"><div class="question-text">Are forearms horizontal and eyes at roughly the same height as the top of the screen?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldoJNSiSslqBrEcB"><div class="question-text">Are feet flat on the floor without too much pressure from the seat?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row hidden-conditional" id="clutter-row" data-field="fldvAcyTsfmvtSclS"><div class="question-text">Is the desk free from clutter with enough space to work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 6. Environment -->
+    <div class="section-title">6. Environment</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldSpzMreJH30t8Vf"><div class="question-text">Is there enough room to change position and vary movement?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldjD6899AN39aupo"><div class="question-text">Is the lighting suitable — not too bright or too dim?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld2bl0D91TUvhsD7"><div class="question-text">Can the lighting be adjusted (lights on/off or dimmed)?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld3h2G64FdeCqHts"><div class="question-text">Does the air feel comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldzuEp2mdF22YtWQ"><div class="question-text">Are levels of heat comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldHRCTV4mCC96zJE"><div class="question-text">Are levels of noise comfortable?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <!-- 7. Final Questions -->
+    <div class="section-title">7. Final Questions</div>
+    <div class="section-block">
+      <div class="question-row" data-field="fldav11T3HaeQJ5Ny"><div class="question-text">Have you experienced any discomfort or symptoms you attribute to DSE work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fldgeeKBfz66zjgLX"><div class="question-text">Have you been advised of your entitlement to eye and eyesight testing?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+      <div class="question-row" data-field="fld9JpD5X1spGnYR3"><div class="question-text">Do you take regular breaks or changes of activity away from DSE work?</div><div class="answer-btns"><button class="ans-btn yes" type="button">Yes</button><button class="ans-btn no" type="button">No</button><button class="ans-btn action" type="button">Action</button></div></div>
+    </div>
+
+    <div class="section-title">Actions / Notes</div>
     <div class="notes-wrap">
-      <textarea id="notes" placeholder="Any additional notes (optional)..."></textarea>
+      <textarea id="notes" placeholder="Describe any issues, actions needed, or additional comments..."></textarea>
     </div>
+
   </div>
+
+  <div class="gdpr-footer">
+    <strong>Data &amp; privacy:</strong> We collect your email address and DSE responses for Health &amp; Safety compliance and to follow up any actions. Data is stored securely and accessed only by authorised staff.
+  </div>
+
   <div class="submit-wrap">
-    <button class="submit-btn" id="submit-btn" type="button">Submit check</button>
+    <button class="submit-btn" id="submit-btn" type="button">Submit assessment</button>
   </div>
 </div>
 
-<div id="screen-recent" class="screen">
-  <div class="page-header">
-    <h1>Recent checks</h1>
-    <p>Last 30 records across all sites</p>
+<div class="complete-screen" id="complete-screen">
+  <div class="complete-icon" id="complete-icon">✅</div>
+  <h2 id="complete-title">Assessment submitted</h2>
+  <p id="complete-msg">Your DSE self-assessment has been saved. A copy has been sent to the facilities team.</p>
+  <div class="action-note" id="action-note" style="display:none;">
+    One or more items were marked as <strong>Action Needed</strong>. These have been flagged and will be followed up by Facilities.
   </div>
-  <div class="recent-body">
-    <div class="filter-row">
-      <button class="filter-chip active" data-site="">All sites</button>
-      <button class="filter-chip" data-site="Balham HQ">Balham HQ</button>
-      <button class="filter-chip" data-site="Hildreth Street">Hildreth St</button>
-      <button class="filter-chip" data-site="Borough Market">Borough Market</button>
-      <button class="filter-chip" data-site="Grantham">Grantham</button>
-    </div>
-    <div id="recent-list"><div class="loading">Loading checks...</div></div>
-  </div>
+  <button class="new-btn" onclick="resetForm()">Start new assessment</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 (function() {
-  var AT_BASE = 'appPOhZzIvJ8JE1Ib';
-  var AT_TABLE = 'tblpGwfbaR1ud9pJR';
-  var AT_EMAILS_TABLE = 'tblxJNk1dHtNV4FCm';
-  var AT_KEY = 'patoF8HTEqJd9HALW.801657546fa730258a3c531e61927a4ac886095947ceca1c150f176823ccef3d';
-  
-  var validEmails = [
-    'leem@brindisa.com',
-    'sallyh@brindisa.com',
-    'robertb@brindisa.com',
-    'eliov@brindisa.com',
-    'dimitrak@brindisa.com',
-    'danb@brindisa.com',
-    'christophers@brindisa.com',
-    'anthonyr@brindisa.com',
-    'andread@brindisa.com',
-    'alexiat@brindisa.com',
-    'matthewh@brindisa.com'
-  ];
-  var userEmail = '';
-  var isAuthenticated = false;
+  // === Airtable ===
+  var AT_BASE  = "appPOhZzIvJ8JE1Ib";
+  var AT_TABLE = "tblQMfTxXBOw6NBa0";
+  var AT_KEY   = "patn3pfQRYPvDnR4u.9769df4e89f92aa2f1ec0504ece05fce6f83dd2be72e2c13b64c5dfc4b2fc8f3"; // <-- paste your PAT token here
 
-  var F = {
-    checkId:'fldulE252bqhH7aRy', date:'fldWNiSm9mXoNAVCY', checkType:'fldVth2StuClWXulN',
-    frequency:'fld1orGv9MREXdLat', site:'fld9RLCm6cj9DXgFh', device:'fldu0IT7i6khnmVcf',
-    result:'fldF1yQlUaapj7Nsm', remedial:'fldaFRMmoSWgRxRDK', remDets:'flduTdEp9npCoVCMl',
-    signedBy:'fldosC6UUHabElcrQ', notes:'fldN0D4Izl0IcuoTZ'
-  };
+  var answers = {};
+  var TOTAL_Q = 27;
 
-  var LOCATIONS = [
-    'Main entrance', 'Reception', 'Ground floor corridor', 'First floor corridor',
-    'Second floor corridor', 'Stairwell A', 'Stairwell B', 'Fire exit — rear',
-    'Fire exit — front', 'Kitchen', 'Staff room', 'Office', 'Warehouse floor',
-    'Production area', 'Cold store', 'Plant room', 'Roof terrace',
-    'Call point 1', 'Call point 2', 'Call point 3', 'Call point 4', 'Call point 5',
-    'Panel — main', 'Break glass unit', 'Extinguisher — CO2', 'Extinguisher — powder',
-    'Extinguisher — water', 'Hose reel', 'Smoke detector zone 1', 'Smoke detector zone 2'
-  ];
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
 
-  var selectedResult = '';
-  var remedialOn = false;
-  var allChecks = [];
-  var activeSite = '';
-  var today = new Date();
+  // === Auto-set site based on assessment type ===
+  var assessTypeEl = document.getElementById("assessment-type");
+  var siteEl = document.getElementById("site");
 
-  document.getElementById('today-date').textContent =
-    today.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  var workstationEl = document.getElementById("workstation");
+  var hybridHint = document.getElementById("hybrid-hint");
 
-  document.getElementById('auth-btn').addEventListener('click', function() {
-    var email = document.getElementById('auth-email').value.trim().toLowerCase();
-    var errorEl = document.getElementById('auth-error');
-    errorEl.style.display = 'none';
-
-    if (!email) { 
-      errorEl.textContent = 'Please enter your email.';
-      errorEl.style.display = 'block';
-      return;
+  function applySiteRules() {
+    var t = assessTypeEl.value;
+    if (t === "Both (Hybrid)") {
+      hybridHint.classList.add("show");
+      siteEl.value = "Multiple / Hybrid";
+      siteEl.disabled = true;
+      siteEl.style.opacity = "0.6";
+      workstationEl.value = "Both (Hybrid)";
+      workstationEl.disabled = true;
+      workstationEl.style.opacity = "0.6";
+    } else if (t === "WFH") {
+      hybridHint.classList.remove("show");
+      siteEl.value = "Home / Remote";
+      siteEl.disabled = true;
+      siteEl.style.opacity = "0.6";
+      if (workstationEl.value === "Both (Hybrid)") workstationEl.value = "Home (WFH)";
+      workstationEl.disabled = false;
+      workstationEl.style.opacity = "1";
+    } else {
+      hybridHint.classList.remove("show");
+      if (siteEl.value === "Home / Remote" || siteEl.value === "Multiple / Hybrid") siteEl.value = "";
+      siteEl.disabled = false;
+      siteEl.style.opacity = "1";
+      if (workstationEl.value === "Both (Hybrid)" || workstationEl.value === "Home (WFH)") workstationEl.value = "";
+      workstationEl.disabled = false;
+      workstationEl.style.opacity = "1";
     }
-
-    var match = validEmails.find(function(e) { return e.toLowerCase() === email; });
-    if (!match) {
-      errorEl.textContent = 'Email not found. Please check and try again.';
-      errorEl.style.display = 'block';
-      return;
-    }
-
-    userEmail = match;
-    isAuthenticated = true;
-    document.getElementById('screen-auth').classList.remove('active');
-    document.getElementById('screen-log').classList.add('active');
-    document.getElementById('nav').style.display = 'flex';
-    document.getElementById('signed-by').value = userEmail;
-  });
-
-  document.getElementById('auth-email').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') document.getElementById('auth-btn').click();
-  });
-
-  document.getElementById('nav-log').addEventListener('click', function() {
-    document.getElementById('screen-log').classList.add('active');
-    document.getElementById('screen-recent').classList.remove('active');
-    document.getElementById('nav-log').classList.add('active');
-    document.getElementById('nav-recent').classList.remove('active');
-  });
-  document.getElementById('nav-recent').addEventListener('click', function() {
-    document.getElementById('screen-recent').classList.add('active');
-    document.getElementById('screen-log').classList.remove('active');
-    document.getElementById('nav-recent').classList.add('active');
-    document.getElementById('nav-log').classList.remove('active');
-    loadRecent();
-  });
-
-  function selectResult(val) {
-    selectedResult = val;
-    document.querySelectorAll('.res-btn').forEach(function(b) { b.classList.remove('selected'); });
-    var idMap = {'Pass':'btn-pass','Pass with Note':'btn-action','Fail':'btn-fail'};
-    document.getElementById(idMap[val]).classList.add('selected');
   }
 
-  var freqMap = {
-    'Fire Alarm Test': 'Weekly',
-    'Fire Door Check': 'Weekly',
-    'Fire Extinguisher Visual': 'Weekly',
-    'Emergency Lighting - Monthly': 'Monthly',
-    'Full Fire Drill': '6 Monthly'
-  };
-  document.getElementById('check-type').addEventListener('change', function() {
-    var freq = freqMap[this.value];
-    if (freq) document.getElementById('frequency').value = freq;
-    document.getElementById('evac-wrap').style.display = this.value === 'Full Fire Drill' ? 'block' : 'none';
-    if (this.value !== 'Full Fire Drill') document.getElementById('evac-time').value = '';
-  });
+  assessTypeEl.addEventListener("change", applySiteRules);
 
-  document.getElementById('btn-pass').addEventListener('click', function() { selectResult('Pass'); });
-  document.getElementById('btn-action').addEventListener('click', function() { selectResult('Pass with Note'); });
-  document.getElementById('btn-fail').addEventListener('click', function() { selectResult('Fail'); });
-
-  function updateRemedial(on) {
-    remedialOn = on;
-    document.getElementById('rem-toggle').checked = on;
-    document.getElementById('rem-body').classList.toggle('show', on);
-  }
-  document.getElementById('rem-toggle').addEventListener('change', function() { updateRemedial(this.checked); });
-  document.getElementById('remedial-header').addEventListener('click', function(e) {
-    if (e.target.closest('label')) return;
-    updateRemedial(!remedialOn);
-  });
-
-  var deviceInput = document.getElementById('device');
-  var deviceList = document.getElementById('device-list');
-  var activeIdx = -1;
-
-  deviceInput.addEventListener('input', function() {
-    var val = this.value.trim().toLowerCase();
-    deviceList.innerHTML = '';
-    activeIdx = -1;
-    if (!val) { deviceList.classList.remove('show'); return; }
-    var matches = LOCATIONS.filter(function(l) { return l.toLowerCase().indexOf(val) !== -1; });
-    if (!matches.length) { deviceList.classList.remove('show'); return; }
-    matches.forEach(function(m, i) {
-      var item = document.createElement('div');
-      item.className = 'autocomplete-item';
-      item.textContent = m;
-      item.addEventListener('mousedown', function(e) { e.preventDefault(); });
-      item.addEventListener('click', function() {
-        deviceInput.value = m;
-        deviceList.classList.remove('show');
+  // === Answer buttons ===
+  document.querySelectorAll(".question-row").forEach(function(row) {
+    var fieldId = row.getAttribute("data-field");
+    row.querySelectorAll(".ans-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        row.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+        btn.classList.add("selected");
+        var val = btn.classList.contains("yes") ? "Yes" : btn.classList.contains("no") ? "No" : "Action Needed";
+        answers[fieldId] = val;
+        // Show clutter question only if desk size is No or Action Needed
+        if (fieldId === "fldmIpaZb5m8zzvKi") {
+          var clutterRow = document.getElementById("clutter-row");
+          if (val === "No" || val === "Action Needed") {
+            clutterRow.classList.add("visible");
+          } else {
+            clutterRow.classList.remove("visible");
+            // Clear the clutter answer if hidden
+            delete answers["fldvAcyTsfmvtSclS"];
+            clutterRow.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+          }
+        }
+        updateProgress();
       });
-      deviceList.appendChild(item);
-    });
-    deviceList.classList.add('show');
-  });
-
-  deviceInput.addEventListener('keydown', function(e) {
-    var items = deviceList.querySelectorAll('.autocomplete-item');
-    if (!items.length) return;
-    if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, items.length - 1); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); }
-    else if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); deviceInput.value = items[activeIdx].textContent; deviceList.classList.remove('show'); return; }
-    else if (e.key === 'Escape') { deviceList.classList.remove('show'); return; }
-    items.forEach(function(it, i) { it.classList.toggle('active', i === activeIdx); });
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.autocomplete-wrap')) deviceList.classList.remove('show');
-  });
-
-  document.querySelectorAll('.filter-chip').forEach(function(chip) {
-    chip.addEventListener('click', function() {
-      activeSite = chip.getAttribute('data-site');
-      document.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
-      chip.classList.add('active');
-      renderChecks();
     });
   });
 
-  document.getElementById('submit-btn').addEventListener('click', function() {
-    var site = document.getElementById('site').value;
-    var checkType = document.getElementById('check-type').value;
-    var frequency = document.getElementById('frequency').value;
-    
-    if (!site || !checkType || !frequency || !selectedResult) {
-      showToast('Please complete all required fields.', 'error'); return;
-    }
+  function getTotalQ() {
+    // Clutter question only counts if visible
+    var clutterVisible = document.getElementById("clutter-row").classList.contains("visible");
+    return clutterVisible ? TOTAL_Q : TOTAL_Q - 1;
+  }
+
+  function updateProgress() {
+    var count = Object.keys(answers).length;
+    var total = getTotalQ();
+    var pct = Math.round((count / total) * 100);
+    document.getElementById("progress-fill").style.width = pct + "%";
+    document.getElementById("progress-label").textContent = count + " of " + total + " questions answered";
+  }
+
+  function isValidWorkEmail(email) {
+    return /^[^@]+@brindisa\.com$/i.test(email.trim());
+  }
+
+  document.getElementById("submit-btn").addEventListener("click", function() {
+    var email       = document.getElementById("user-email").value.trim().toLowerCase();
+    var assessType  = document.getElementById("assessment-type").value;
+    var site        = document.getElementById("site").value;
+    var workstation = document.getElementById("workstation").value;
+
+    if (!email)                        { showToast("Please enter your work email address.", "error"); return; }
+    if (!isValidWorkEmail(email))  { showToast("Please use your @brindisa.com email address.", "error"); return; }
+    if (!assessType)                   { showToast("Please select an assessment type.", "error"); return; }
+
+    applySiteRules();
+    site = document.getElementById("site").value;
+
+    if (!site)                                         { showToast("Please select your site.", "error"); return; }
+    if (Object.keys(answers).length < getTotalQ())         { showToast("Please answer all " + getTotalQ() + " questions.", "error"); return; }
 
     var btn = this;
-    btn.disabled = true; btn.textContent = 'Submitting...';
-    var fields = {};
-    fields[F.checkId] = site.replace(/\s+/g,'').substring(0,3).toUpperCase() + '-' + Date.now().toString().slice(-6);
-    fields[F.date] = today.toISOString().split('T')[0];
-    fields[F.site] = site;
-    fields[F.checkType] = checkType;
-    fields[F.frequency] = frequency;
-    fields[F.result] = selectedResult;
-    fields[F.remedial] = remedialOn;
-    fields[F.signedBy] = userEmail;
-    var device = document.getElementById('device').value.trim();
-    if (device) fields[F.device] = device;
-    var remDets = document.getElementById('rem-details').value.trim();
-    if (remedialOn && remDets) fields[F.remDets] = remDets;
-    var notes = document.getElementById('notes').value.trim();
-    if (notes) fields[F.notes] = notes;
-    var evacTime = document.getElementById('evac-time').value;
-    if (evacTime && document.getElementById('check-type').value === 'Full Fire Drill') {
-      fields['fldlN3RJPmL9PCN9B'] = parseFloat(evacTime);
-    }
+    btn.disabled = true; btn.textContent = "Submitting...";
 
-    fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json','Authorization':'Bearer ' + AT_KEY},
-      body: JSON.stringify({records:[{fields:fields}]})
+    var today     = new Date().toISOString().split("T")[0];
+    var emailSlug = email.split("@")[0].substring(0,6).toUpperCase();
+    var assessId  = "DSE-" + emailSlug + "-" + Date.now().toString().slice(-6);
+
+    var hasAction    = Object.values(answers).some(function(v) { return v === "Action Needed"; });
+    var overallResult = hasAction ? "Actions Required" : "All Pass";
+
+    // === Airtable payload — field IDs verified against live table ===
+    var fields = {
+      fldYU58czQjhDkJeo: assessId,          // Assessment ID (text)
+      fldeVILh6HgSj1l65: today,             // Date
+      fldLsMqJ0BdVuYhu7: site,              // Site (single select)
+      fldeZV9HiEDqpGeiL: overallResult,     // Overall Result (single select)
+      flds2EbHtDzxDHcWP: assessType         // Assessment Type (single select: "Office" or "WFH")
+    };
+
+    // Dedicated email field
+    fields.fldc80B4W8pFkaj1k = email;  // Submitted By (Email)
+
+    // Notes
+    var userNotes = document.getElementById("notes").value.trim();
+    if (userNotes) fields.fldJfJoEBFg8M9eLY = userNotes;  // Actions (multiline text)
+
+    if (workstation) fields.fldqHdgWOfVYZdCkd = workstation;  // Workstation (text)
+
+    Object.assign(fields, answers);
+
+    fetch("https://api.airtable.com/v0/" + AT_BASE + "/" + AT_TABLE, {
+      method: "POST",
+      headers: {"Content-Type":"application/json","Authorization":"Bearer " + AT_KEY},
+      body: JSON.stringify({records:[{fields:fields}], typecast: true})
     }).then(function(res) {
-      if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || 'API error'); });
-      showToast('Check submitted.', 'success');
-      resetForm();
+      if (!res.ok) return res.json().then(function(e) { throw new Error(e.error && e.error.message || "API error"); });
+      return res.json();
+    }).then(function() {
+      document.getElementById("form-screen").style.display = "none";
+      var cs = document.getElementById("complete-screen");
+      cs.classList.add("show");
+      document.getElementById("complete-title").textContent = hasAction ? "Assessment submitted — actions flagged" : "Assessment submitted";
+      document.getElementById("complete-icon").textContent  = hasAction ? "⚠️" : "✅";
+      if (hasAction) document.getElementById("action-note").style.display = "block";
     }).catch(function(e) {
-      showToast('Failed: ' + e.message, 'error');
-    }).finally(function() {
-      btn.disabled = false; btn.textContent = 'Submit check';
+      showToast("Failed: " + e.message, "error");
+      btn.disabled = false; btn.textContent = "Submit assessment";
     });
   });
 
-  function resetForm() {
-    ['site','check-type','frequency'].forEach(function(id) { document.getElementById(id).value = ''; });
-    ['device','notes','rem-details','evac-time'].forEach(function(id) { document.getElementById(id).value = ''; });
-    document.getElementById('evac-wrap').style.display = 'none';
-    selectedResult = '';
-    document.querySelectorAll('.res-btn').forEach(function(b) { b.classList.remove('selected'); });
-    updateRemedial(false);
-  }
-
-  function loadRecent() {
-    document.getElementById('recent-list').innerHTML = '<div class="loading">Loading...</div>';
-    fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE +
-      '?pageSize=30&sort[0][field]=fldWNiSm9mXoNAVCY&sort[0][direction]=desc',
-      {headers:{'Authorization':'Bearer ' + AT_KEY}}
-    ).then(function(res) {
-      if (!res.ok) throw new Error('Could not load records');
-      return res.json();
-    }).then(function(data) {
-      allChecks = data.records || [];
-      if (allChecks.length > 0) {
-        console.log('Sample record fields:', JSON.stringify(allChecks[0].fields));
-      }
-      renderChecks();
-    }).catch(function(e) {
-      document.getElementById('recent-list').innerHTML = '<div class="error-state">Could not load: ' + e.message + '</div>';
-    });
-  }
-
-  function gv(f, k) { 
-    var v = f[k]; 
-    if (!v && v !== 0) return '';
-    if (typeof v === 'object' && !Array.isArray(v) && v.name) return v.name;
-    if (typeof v === 'object' && !Array.isArray(v) && v.value) return v.value;
-    return String(v);
-  }
-
-  function renderChecks() {
-    var list = document.getElementById('recent-list');
-    var filtered = activeSite
-      ? allChecks.filter(function(r) { return gv(r.fields||{}, F.site) === activeSite; })
-      : allChecks;
-    if (!filtered.length) { list.innerHTML = '<div class="empty-state">No checks found.</div>'; return; }
-    list.innerHTML = filtered.map(function(r) {
-      var f = r.fields || {};
-      var ct = gv(f,F.checkType), si = gv(f,F.site), re = gv(f,F.result);
-      var da = gv(f,F.date), sb = gv(f,F.signedBy), fr = gv(f,F.frequency), rd = gv(f,F.remDets);
-      var dv = gv(f,F.device), rem = f[F.remedial];
-      var bc = re==='Pass'?'badge-pass':re==='Fail'?'badge-fail':'badge-action';
-      var ds = da ? new Date(da).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
-      return '<div class="check-card"><div class="check-card-top"><div><div class="check-type">'+(ct||'Unknown')+'</div><div class="check-site">'+si+(dv?' — '+dv:'')+'</div></div><span class="result-badge '+bc+'">'+(re||'—')+'</span></div><div class="check-meta"><span>'+ds+'</span>'+(fr?'<span>'+fr+'</span>':'')+(sb?'<span>'+sb+'</span>':'')+'</div>'+(rem?'<div class="remedial-flag">Remedial required'+(rd?': '+rd:'')+'</div>':'')+'</div>';
-    }).join('');
-  }
-
   function showToast(msg, type) {
-    var t = document.getElementById('toast');
-    t.textContent = msg; t.className = 'toast '+type+' show';
-    setTimeout(function() { t.classList.remove('show'); }, 3000);
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.className = "toast " + type + " show";
+    setTimeout(function() { t.classList.remove("show"); }, 3500);
   }
+
+  window.resetForm = function() {
+    answers = {};
+    document.getElementById("user-email").value    = "";
+    document.getElementById("assessment-type").value = "";
+    document.getElementById("hybrid-hint").classList.remove("show");
+    document.getElementById("site").value          = "";
+    document.getElementById("site").disabled        = false;
+    document.getElementById("site").style.opacity   = "1";
+    document.getElementById("workstation").value    = "";
+    document.getElementById("workstation").disabled = false;
+    document.getElementById("workstation").style.opacity = "1";
+    document.getElementById("notes").value         = "";
+    document.querySelectorAll(".ans-btn").forEach(function(b) { b.classList.remove("selected"); });
+    document.getElementById("clutter-row").classList.remove("visible");
+    document.getElementById("action-note").style.display = "none";
+    document.getElementById("complete-screen").classList.remove("show");
+    document.getElementById("form-screen").style.display = "block";
+    document.getElementById("submit-btn").disabled    = false;
+    document.getElementById("submit-btn").textContent = "Submit assessment";
+    updateProgress();
+    window.scrollTo(0, 0);
+  };
+
+  updateProgress();
 })();
 </script>
+
 </body>
 </html>
